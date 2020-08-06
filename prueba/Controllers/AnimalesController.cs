@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using prueba.Data;
 using prueba.Models;
@@ -27,7 +24,10 @@ namespace ZooLine.Controllers
         // GET: Animales
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Animales.ToListAsync());
+            var animal = await _context.Animales.ToListAsync();
+            animal.ForEach(p => p.FotografiaBase64 = $"data:image/png;base64,{Convert.ToBase64String(p.fotoAnimal)}");
+
+            return View(animal);
         }
 
         // GET: Animales/Details/5
