@@ -1,0 +1,42 @@
+﻿@model IEnumerable<prueba.Models.Ecosistema>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoEcosistema)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreEcositem)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoEcosistema)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreEcositem)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EcosistemaId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EcosistemaId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EcosistemaId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

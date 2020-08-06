@@ -1,0 +1,79 @@
+﻿@model prueba.Models.Animales
+
+@{
+    ViewData["Title"] = "Crear";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Crear</title>
+</head>
+<body>
+
+    <h4>Animales</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4" >
+            <form asp-action="Create" enctype="multipart/form-data"method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Nombre" class="control-label"></label>
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NombreCientifico" class="control-label"></label>
+                    <input asp-for="NombreCientifico" class="form-control" />
+                    <span asp-validation-for="NombreCientifico" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="año_nacimiento" class="control-label"></label>
+                    <input asp-for="año_nacimiento" class="form-control" />
+                    <span asp-validation-for="año_nacimiento" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="año_muerte" class="control-label"></label>
+                    <input asp-for="año_muerte" class="form-control" />
+                    <span asp-validation-for="año_muerte" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="estatura" class="control-label"></label>
+                    <input asp-for="estatura" class="form-control" />
+                    <span asp-validation-for="estatura" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ancho" class="control-label"></label>
+                    <input asp-for="ancho" class="form-control" />
+                    <span asp-validation-for="ancho" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="fotoAnimal" class="control-label"></label>
+                    <input asp-for="fotoAnimal" class="custom-file-input" id="custom-file" />
+                    <label class="custom-file-label" for="custom-file">Escoge una imagen</label>
+                    <span asp-validation-for="fotoAnimal" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Ir a la lista</a>
+    </div>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script type="text/javascript">
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split('\\').pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName)
+        });
+        
+        </script>
+        }
+    </body>
+</html>
