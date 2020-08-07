@@ -25,7 +25,7 @@ namespace prueba.Controllers
         }
         public IActionResult Carrusel()
         {
-            return Carrusel();
+            return Index();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

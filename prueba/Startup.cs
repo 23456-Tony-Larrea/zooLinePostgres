@@ -27,6 +27,17 @@ namespace prueba
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = Configuration["AppGoogleClientId"];
+                    options.ClientSecret = Configuration["App:GoogleClientSecret"];
+                })
+                .AddFacebook(options=>
+                  {
+                      options.AppId = Configuration["App:FacebookClientId"];
+                      options.ClientSecret =Configuration["App:FacebookClientSecret"];
+                  });
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
