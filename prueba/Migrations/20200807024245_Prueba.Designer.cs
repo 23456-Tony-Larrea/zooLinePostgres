@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using prueba.Data;
 
-namespace prueba.Migrations
+namespace ZooLine.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200805192135_vegetacion")]
-    partial class vegetacion
+    [Migration("20200807024245_Prueba")]
+    partial class Prueba
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -226,10 +226,15 @@ namespace prueba.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<string>("FotografiaBase64")
+                        .HasColumnType("text");
+
                     b.Property<string>("Nombre")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("NombreCientifico")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<decimal>("ancho")
@@ -245,6 +250,7 @@ namespace prueba.Migrations
                         .HasColumnType("numeric");
 
                     b.Property<byte[]>("fotoAnimal")
+                        .IsRequired()
                         .HasColumnType("bytea");
 
                     b.HasKey("AnimalId");
@@ -267,6 +273,105 @@ namespace prueba.Migrations
                     b.ToTable("Clima");
                 });
 
+            modelBuilder.Entity("prueba.Models.ClimaVegetacion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("VegetacionId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("climaId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VegetacionId");
+
+                    b.HasIndex("climaId");
+
+                    b.ToTable("ClimaVegetacion");
+                });
+
+            modelBuilder.Entity("prueba.Models.Continente", b =>
+                {
+                    b.Property<int>("ContinenteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("NombreContinente")
+                        .HasColumnType("text");
+
+                    b.HasKey("ContinenteId");
+
+                    b.ToTable("Continente");
+                });
+
+            modelBuilder.Entity("prueba.Models.ContinenteEcosistema", b =>
+                {
+                    b.Property<int>("ContinenteEcosistemaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("ContinenteId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("EcosistemaId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ContinenteEcosistemaId");
+
+                    b.HasIndex("ContinenteId");
+
+                    b.HasIndex("EcosistemaId");
+
+                    b.ToTable("ContinenteEcosistema");
+                });
+
+            modelBuilder.Entity("prueba.Models.Ecosistema", b =>
+                {
+                    b.Property<int>("EcosistemaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("CodigoEcosistema")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NombreEcositem")
+                        .HasColumnType("text");
+
+                    b.HasKey("EcosistemaId");
+
+                    b.ToTable("Ecosistema");
+                });
+
+            modelBuilder.Entity("prueba.Models.EcosistemaHabitat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("EcosistemaId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("HabitatId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EcosistemaId");
+
+                    b.HasIndex("HabitatId");
+
+                    b.ToTable("EcosistemaHabitat");
+                });
+
             modelBuilder.Entity("prueba.Models.Especie", b =>
                 {
                     b.Property<int>("EspecieId")
@@ -274,10 +379,15 @@ namespace prueba.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int>("AnimalId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("NombreEspecie")
                         .HasColumnType("text");
 
                     b.HasKey("EspecieId");
+
+                    b.HasIndex("AnimalId");
 
                     b.ToTable("Especie");
                 });
@@ -300,6 +410,43 @@ namespace prueba.Migrations
                     b.ToTable("Habitat");
                 });
 
+            modelBuilder.Entity("prueba.Models.HabitatClima", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("HabitatId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("climaId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HabitatId");
+
+                    b.HasIndex("climaId");
+
+                    b.ToTable("HabitatClima");
+                });
+
+            modelBuilder.Entity("prueba.Models.Rol", b =>
+                {
+                    b.Property<int>("RolId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("MyProperty")
+                        .HasColumnType("integer");
+
+                    b.HasKey("RolId");
+
+                    b.ToTable("Rol");
+                });
+
             modelBuilder.Entity("prueba.Models.Tour", b =>
                 {
                     b.Property<int>("TourId")
@@ -319,6 +466,28 @@ namespace prueba.Migrations
                     b.HasKey("TourId");
 
                     b.ToTable("Tour");
+                });
+
+            modelBuilder.Entity("prueba.Models.TourContinente", b =>
+                {
+                    b.Property<int>("TourContienteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("ContinenteId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TourId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("TourContienteId");
+
+                    b.HasIndex("ContinenteId");
+
+                    b.HasIndex("TourId");
+
+                    b.ToTable("TourContinente");
                 });
 
             modelBuilder.Entity("prueba.Models.Usuario", b =>
@@ -360,6 +529,28 @@ namespace prueba.Migrations
                     b.ToTable("Usuario");
                 });
 
+            modelBuilder.Entity("prueba.Models.UsuarioRol", b =>
+                {
+                    b.Property<int>("UsuarioRolId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("RolId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("UsuarioRolId");
+
+                    b.HasIndex("RolId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("UsuarioRol");
+                });
+
             modelBuilder.Entity("prueba.Models.Vegetacion", b =>
                 {
                     b.Property<int>("VegetacionId")
@@ -373,6 +564,31 @@ namespace prueba.Migrations
                     b.HasKey("VegetacionId");
 
                     b.ToTable("Vegetacion");
+                });
+
+            modelBuilder.Entity("prueba.Models.VegetacionAnimal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("AnimalId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("AnimalesAnimalId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("VegetacionId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnimalesAnimalId");
+
+                    b.HasIndex("VegetacionId");
+
+                    b.ToTable("VegetacionAnimal");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -422,6 +638,118 @@ namespace prueba.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("prueba.Models.ClimaVegetacion", b =>
+                {
+                    b.HasOne("prueba.Models.Vegetacion", "Vegetacion")
+                        .WithMany("ClimaVegetacion")
+                        .HasForeignKey("VegetacionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("prueba.Models.Clima", "Clima")
+                        .WithMany()
+                        .HasForeignKey("climaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("prueba.Models.ContinenteEcosistema", b =>
+                {
+                    b.HasOne("prueba.Models.Continente", "Continente")
+                        .WithMany("ContinenteEcosisitema")
+                        .HasForeignKey("ContinenteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("prueba.Models.Ecosistema", "Ecosistema")
+                        .WithMany()
+                        .HasForeignKey("EcosistemaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("prueba.Models.EcosistemaHabitat", b =>
+                {
+                    b.HasOne("prueba.Models.Ecosistema", "Ecosistema")
+                        .WithMany("EcosistemaHabitat")
+                        .HasForeignKey("EcosistemaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("prueba.Models.Habitat", "Habitat")
+                        .WithMany()
+                        .HasForeignKey("HabitatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("prueba.Models.Especie", b =>
+                {
+                    b.HasOne("prueba.Models.Animales", "Animales")
+                        .WithMany()
+                        .HasForeignKey("AnimalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("prueba.Models.HabitatClima", b =>
+                {
+                    b.HasOne("prueba.Models.Habitat", "Habitat")
+                        .WithMany("HabitatClima")
+                        .HasForeignKey("HabitatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("prueba.Models.Clima", "Clima")
+                        .WithMany("HabitatClima")
+                        .HasForeignKey("climaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("prueba.Models.TourContinente", b =>
+                {
+                    b.HasOne("prueba.Models.Continente", "Continente")
+                        .WithMany()
+                        .HasForeignKey("ContinenteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("prueba.Models.Tour", "Tour")
+                        .WithMany("TourContinentes")
+                        .HasForeignKey("TourId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("prueba.Models.UsuarioRol", b =>
+                {
+                    b.HasOne("prueba.Models.Rol", "Rol")
+                        .WithMany("UsuarioRoles")
+                        .HasForeignKey("RolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("prueba.Models.Usuario", "Usuario")
+                        .WithMany("UsuarioRoles")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("prueba.Models.VegetacionAnimal", b =>
+                {
+                    b.HasOne("prueba.Models.Animales", "Animales")
+                        .WithMany("VegetacionAnimal")
+                        .HasForeignKey("AnimalesAnimalId");
+
+                    b.HasOne("prueba.Models.Vegetacion", "Vegetacion")
+                        .WithMany()
+                        .HasForeignKey("VegetacionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

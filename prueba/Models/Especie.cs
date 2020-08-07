@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace prueba.Models
 {
@@ -7,6 +8,9 @@ namespace prueba.Models
         [Key]
         public int EspecieId { get; set; }
         public string NombreEspecie { get; set; }
-        public List<Animales> Animales { get; set; }
+     
+        [ForeignKey(name: "Animales")]
+        public int AnimalId { get; set; }
+        public Animales Animales { get; set; }
     }
 }

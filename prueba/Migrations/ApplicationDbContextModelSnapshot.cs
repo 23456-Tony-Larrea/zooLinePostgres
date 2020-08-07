@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using prueba.Data;
 
-namespace prueba.Migrations
+namespace ZooLine.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -224,8 +224,8 @@ namespace prueba.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("EspecieId")
-                        .HasColumnType("integer");
+                    b.Property<string>("FotografiaBase64")
+                        .HasColumnType("text");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -252,8 +252,6 @@ namespace prueba.Migrations
                         .HasColumnType("bytea");
 
                     b.HasKey("AnimalId");
-
-                    b.HasIndex("EspecieId");
 
                     b.ToTable("Animales");
                 });
@@ -379,10 +377,15 @@ namespace prueba.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int>("AnimalId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("NombreEspecie")
                         .HasColumnType("text");
 
                     b.HasKey("EspecieId");
+
+                    b.HasIndex("AnimalId");
 
                     b.ToTable("Especie");
                 });
@@ -637,15 +640,6 @@ namespace prueba.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("prueba.Models.Animales", b =>
-                {
-                    b.HasOne("prueba.Models.Especie", "Especie")
-                        .WithMany("Animales")
-                        .HasForeignKey("EspecieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("prueba.Models.ClimaVegetacion", b =>
                 {
                     b.HasOne("prueba.Models.Vegetacion", "Vegetacion")
@@ -687,6 +681,15 @@ namespace prueba.Migrations
                     b.HasOne("prueba.Models.Habitat", "Habitat")
                         .WithMany()
                         .HasForeignKey("HabitatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("prueba.Models.Especie", b =>
+                {
+                    b.HasOne("prueba.Models.Animales", "Animales")
+                        .WithMany()
+                        .HasForeignKey("AnimalId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

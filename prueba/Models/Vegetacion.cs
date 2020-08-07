@@ -8,7 +8,5 @@ namespace prueba.Models
         public int VegetacionId { get; set; }
         public string NombreVegetacion { get; set; }
         public List<ClimaVegetacion> ClimaVegetacion { get; set; }
-
-
     }
 }
