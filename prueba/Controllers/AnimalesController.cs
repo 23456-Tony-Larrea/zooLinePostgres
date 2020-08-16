@@ -25,7 +25,7 @@ namespace ZooLine.Controllers
         public async Task<IActionResult> Index()
         {
             var animal = await _context.Animales.ToListAsync();
-            animal.ForEach(p => p.FotografiaBase64 = $"data:image/png;base64,{Convert.ToBase64String(p.fotoAnimal)}");
+            animal.ForEach(p => p.FotografiaBase64 = $"data:~/image/png;base64,{Convert.ToBase64String(p.fotoAnimal)}");
 
             return View(animal);
         }

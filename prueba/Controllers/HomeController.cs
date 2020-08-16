@@ -27,6 +27,14 @@ namespace prueba.Controllers
         {
             return Index();
         }
+        public IActionResult Menu()
+        {
+            return Index();
+        }
+        public IActionResult Costa()
+        {
+            return Index();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

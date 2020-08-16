@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Oriente";
+    // Layout = "~/Views/Home/Index.cshtml";
+}
+
+<head>
+    <link href="~/css/MenuResponsive.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<div class="tour">
+    <input type="checkbox" id="check" />
+    <label for="check">
+        <span class="material-icons" id="btn">menu_open</span>
+        <span class="material-icons" id="cancel">cancel</span>
+    </label>
+    <div class="slider">
+        <header>Regiones</header>
+        <ul>
+            <li><a asp-action="Index" asp-controller="Sierra"><i><span class="material-icons">location_on</span></i>Sierra</a></li>
+            <li><a asp-action="Index" asp-controller="Costa"><i><span class="material-icons">location_on</span></i>Costa</a></li>
+            <li><a asp-action="Index" asp-controller="Galapagos"><i><span class="material-icons">location_on</span></i>Galapagos</a></li>
+            <br />
+            <br />
+            <br />
+            <li><a asp-action="Index" asp-controller="Menu"><i><span class="material-icons">directions_run</span></i>Ir al menu!</a></li>
+        </ul>
+    </div>
+
+
+</div>

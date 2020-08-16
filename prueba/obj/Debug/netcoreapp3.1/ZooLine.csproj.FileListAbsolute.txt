@@ -270,3 +270,8 @@ D:\PV3ERO\ZooLine\prueba\prueba\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Aut
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\ZooLine.csproj.CoreCompileInputs.cache
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\ZooLine.MvcApplicationPartsAssemblyInfo.cs
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\ZooLine.MvcApplicationPartsAssemblyInfo.cache
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Menu\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Costa\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Sierra\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Galapagos\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Oriente\Index.cshtml.g.cs
