@@ -275,3 +275,7 @@ D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Costa\Index.
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Sierra\Index.cshtml.g.cs
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Galapagos\Index.cshtml.g.cs
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Oriente\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaCosta\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaSierra\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaGalapagos\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaOriente\Index.cshtml.g.cs
