@@ -271,7 +271,6 @@ D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\ZooLine.csproj.CoreCompi
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\ZooLine.MvcApplicationPartsAssemblyInfo.cs
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\ZooLine.MvcApplicationPartsAssemblyInfo.cache
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Menu\Index.cshtml.g.cs
-D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Costa\Index.cshtml.g.cs
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Sierra\Index.cshtml.g.cs
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Galapagos\Index.cshtml.g.cs
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Oriente\Index.cshtml.g.cs
@@ -279,3 +278,13 @@ D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaCosta\I
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaSierra\Index.cshtml.g.cs
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaGalapagos\Index.cshtml.g.cs
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaOriente\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaCalidoCosta\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaTropicalCosta\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaHumedoCosta\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaMonzonicoCosta\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaTropicalSierra\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaTempladoSierra\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaFrioSierra\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaGlaciarSierra\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaTempladoGalapagos\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaTropicalGalapagos\Index.cshtml.g.cs

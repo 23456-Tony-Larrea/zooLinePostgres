@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "ClimaTempladoSierra";
+    // Layout = "~/Views/Home/Index.cshtml";
+}
+
+<head>
+    <link href="~/css/MenuResponsive.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<input type="checkbox" id="check" />
+<label for="check">
+    <span class="material-icons" id="btn">menu_open</span>
+    <span class="material-icons" id="cancel">cancel</span>
+</label>
+<div class="slider">
+    <header>Climas</header>
+    <ul>
+        <li><a asp-action="Index" asp-controller="ClimaTropicalSierra"><i><span class="material-icons">location_on</span></i>Tropical Andino</a></li>
+        <li><a asp-action="Index" asp-controller="ClimaFrioSierra"><i><span class="material-icons">location_on</span></i>Frio</a></li>
+        <li><a asp-action="Index" asp-controller="ClimaMonzonicoCosta"><i><span class="material-icons">location_on</span></i>Glaciar</a></li>
+        <br />
+        <br />
+        <br />
+        <li><a asp-action="Index" asp-controller="Menu"><i><span class="material-icons">directions_run</span></i>Regresar</a></li>
+    </ul>
+</div>
+<section>
+
+    <div class="card-group">
+        <div class="card">
+            <img class="card-img-top" src="~/img/Costa/shutterstock_256752703.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Cangrejo</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" src="~/img/Costa/iguana.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" src="~/img/Costa/mono.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+
+    </div>
+    <br />
+    <div class="card-group">
+        <div class="card">
+            <img class="card-img-top" src="~/img/Costa/Zarigueya.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" src="~/img/Costa/mono cara blanca.jpeg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" src="~/img/Costa/codrile.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+
+    </div>
+
+</section>

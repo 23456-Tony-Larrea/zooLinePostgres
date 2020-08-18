@@ -1,6 +1,5 @@
-﻿@model IEnumerable<prueba.Models.Animales>
-@{
-    ViewData["Title"] = "Costa";
+﻿@{
+    ViewData["Title"] = "ClimaGlaciarSierra";
     // Layout = "~/Views/Home/Index.cshtml";
 }
 
@@ -14,15 +13,15 @@
     <span class="material-icons" id="cancel">cancel</span>
 </label>
 <div class="slider">
-    <header>Regiones</header>
+    <header>Climas</header>
     <ul>
-        <li><a asp-action="Index" asp-controller="Sierra"><i><span class="material-icons">location_on</span></i>Sierra</a></li>
-        <li><a asp-action="Index" asp-controller="Galapagos"><i><span class="material-icons">location_on</span></i>Galapagos</a></li>
-        <li><a asp-action="Index" asp-controller="Oriente"><i><span class="material-icons">location_on</span></i>Oriente</a></li>
+        <li><a asp-action="Index" asp-controller="ClimaTropicalSierra"><i><span class="material-icons">location_on</span></i>Tropical Andino</a></li>
+        <li><a asp-action="Index" asp-controller="ClimaFrioSierra"><i><span class="material-icons">location_on</span></i>Frio</a></li>
+        <li><a asp-action="Index" asp-controller="ClimaTempladoSierra"><i><span class="material-icons">location_on</span></i>Templado</a></li>
         <br />
         <br />
         <br />
-        <li><a asp-action="Index" asp-controller="Menu"><i><span class="material-icons">directions_run</span></i>Ir al menu !</a></li>
+        <li><a asp-action="Index" asp-controller="Menu"><i><span class="material-icons">directions_run</span></i>Regresar</a></li>
     </ul>
 </div>
 <section>

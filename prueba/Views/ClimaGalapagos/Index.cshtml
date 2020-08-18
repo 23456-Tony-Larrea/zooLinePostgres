@@ -1,4 +1,8 @@
-﻿<head>
+﻿@{
+    ViewData["Title"] = "ClimaGalapagos";
+    // Layout = "~/Views/Home/Index.cshtml";
+}
+<head>
     <link href="~/css/Clima2.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
@@ -6,11 +10,11 @@
     <header id="head">
         <div class="contenedor" id="uno">
             <span class="material-icons" id="icon">person_pin_circle</span>
-            <p class="texto">Tropical andino</p>
+            <center><font color="white"><a class="texto" asp-action="Index" asp-controller="ClimaTropicalGalapagos">Tropical andino</a></font></center>
         </div>
         <div class="contenedor" id="dos">
             <span class="material-icons" id="icon">person_pin_circle</span>
-            <p class="texto">Templado</p>
+            <center><font color="white"> <a class="texto" asp-action="Index" asp-controller="ClimaTempladoGalapagos">Templado</a></font></center>
         </div>
     </header>
 </body>

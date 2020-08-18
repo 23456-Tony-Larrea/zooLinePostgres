@@ -50,7 +50,7 @@ span#icon {
     -webkit-transition: box-shadow .4s;
 }
 
-p.texto {
+a.texto {
     font-size: 1.2em;
     color: white;
     text-align: center;
@@ -63,7 +63,7 @@ div.contenedor:hover {
     height: 250px;
 }
 
-    div.contenedor:hover p.texto {
+    div.contenedor:hover a.texto {
         padding-top: 30px;
         opacity: 1;
     }
