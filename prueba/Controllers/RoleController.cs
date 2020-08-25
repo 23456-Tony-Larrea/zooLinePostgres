@@ -1,16 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using prueba.Models;
 using ZooLine.Controllers;
 
 namespace Identity.Controllers
 {
     public class RoleController : Controller
     {
-        private RoleManager<IdentityRole> roleManager;
-        private UserManager<IdentityUser> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
+        private readonly UserManager<IdentityUser> userManager;
         public RoleController(RoleManager<IdentityRole> roleMgr, UserManager<IdentityUser> userMgr)
         {
             roleManager = roleMgr;
@@ -57,21 +60,28 @@ namespace Identity.Controllers
         }
         public async Task<IActionResult> Update(string id)
         {
-            IdentityRole role = await roleManager.FindByIdAsync(id);
-            List<IdentityUser> members = new List<IdentityUser>();
-            List<IdentityUser> nonMembers = new List<IdentityUser>();
-            foreach (IdentityUser user in userManager.Users)
-            {
-               var list = await userManager.IsInRoleAsync(user, role.Name) ? members : nonMembers;
-                list.Add(user);
-            }
-            return View(new RoleEdit
+          
+           
+             var role = await roleManager.FindByIdAsync(id);
 
-            {
-                Role = role,
-                Members = members,
-                NonMembers = nonMembers
-            });
+                List<IdentityUser> members = new List<IdentityUser>();
+                List<IdentityUser> nonMembers = new List<IdentityUser>();
+              var users = await  userManager.Users.ToListAsync();
+                 
+                    foreach (IdentityUser user in users)
+                    {
+                        var list = await userManager.IsInRoleAsync(user, role.Name) ? members : nonMembers;
+                        list.Add(user);
+                    }
+                    return View(new RoleEdit
+
+                    {
+                        Role = role,
+                        Members = members,
+                        NonMembers = nonMembers
+                    });
+                       
+           
         }
 
         [HttpPost]
@@ -80,24 +90,31 @@ namespace Identity.Controllers
             IdentityResult result;
             if (ModelState.IsValid)
             {
-                foreach (string userId in model.AddIds ?? new string[] { })
+                using (userManager)
                 {
-                    IdentityUser user = await userManager.FindByIdAsync(userId);
-                    if (user != null)
+                    foreach (string userId in model.AddIds ?? new string[] { })
                     {
-                        result = await userManager.AddToRoleAsync(user, model.RoleName);
-                        if (!result.Succeeded)
-                            Errors(result);
+                        IdentityUser user = await userManager.FindByIdAsync(userId);
+                        if (user != null)
+                        {
+                            result = await userManager.AddToRoleAsync(user, model.RoleName);
+                            if (!result.Succeeded)
+                                Errors(result);
+                        }
                     }
-                }
-                foreach (string userId in model.DeleteIds ?? new string[] { })
-                {
-                    IdentityUser user = await userManager.FindByIdAsync(userId);
-                    if (user != null)
+                    // aqui es donde succede el error ala paracer usemanger y role manger usan el mismo dbcontext 
+                    using (roleManager)
                     {
-                        result = await userManager.RemoveFromRoleAsync(user, model.RoleName);
-                        if (!result.Succeeded)
-                            Errors(result);
+                        foreach (string userId in model.DeleteIds ?? new string[] { })
+                        {
+                            IdentityUser user = await userManager.FindByIdAsync(userId);
+                            if (user != null)
+                            {
+                                result = await userManager.RemoveFromRoleAsync(user, model.RoleName);
+                                if (!result.Succeeded)
+                                    Errors(result);
+                            }
+                        }
                     }
                 }
             }

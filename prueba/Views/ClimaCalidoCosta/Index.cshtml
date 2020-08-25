@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<prueba.Models.Animales>
 @{
     ViewData["Title"] = "ClimaCalidoCosta";
-    // Layout = "~/Views/Home/Index.cshtml";
 }
 
 <head>
@@ -26,29 +25,35 @@
     </ul>
 </div>
 <section>
-
     <div class="accordion" id="accordionExample">
+        
         <div class="card">
             <div class="card-header" id="headingOne">
                 <h2 class="mb-0">
                     <button class="btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Aves
+                        Matorral Seco de la Costa
                     </button>
                 </h2>
-            </div>
+            </div>          
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                     <div class="card-group">
                         <div class="card">
                             <img class="card-img-top" src="~/img/Costa/shutterstock_256752703.jpg" alt="Card image cap">
                             <div class="card-body">
-                                <h5 class="card-title">Cangrejo</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <h3 class="card-title">Cangrejo</h3>
+                                <h5 class="card-title">Nombre Cientifico: Brachyura</h5>
+                                <p class="card-text">
+                                    Se llama cangrejos a diversos crustáceos del orden de los decápodos. Este orden, caracterizado por tener cinco pares de patas,
+                                    de los cuales dos suelen ser sus pinzas, incluye a los crustáceos de mayor tamaño, como langostas,
+                                    gambas y camarones, además de las diversas formas que se llaman cangrejos.
+                                </p>
+                                <p class="card-text"><small class="text-muted">Viven aproximadamente 30 años</small></p>
                             </div>
                         </div>
-                        <div class="card">
-                            <img class="card-img-top" src="~/img/Costa/iguana.jpg" alt="Card image cap">
+                        <br>
+                           <div class="card">
+                            <img        class="card-img-top" src="~/img/Costa/iguana.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
@@ -67,168 +72,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header" id="headingTwo">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Reptiles
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <div class="card-group">
-                            <div class="card">
-                                <img class="card-img-top" src="~/img/Costa/Zarigueya.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img class="card-img-top" src="~/img/Costa/mono cara blanca.jpeg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img class="card-img-top" src="~/img/Costa/codrile.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header" id="headingThree">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Mamiferos
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <div class="card-group">
-                            <div class="card">
-                                <img class="card-img-top" src="~/img/Costa/Zarigueya.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img class="card-img-top" src="~/img/Costa/mono cara blanca.jpeg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img class="card-img-top" src="~/img/Costa/codrile.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header" id="headingFour">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            Peces
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <div class="card-group">
-                            <div class="card">
-                                <img class="card-img-top" src="~/img/Costa/Zarigueya.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img class="card-img-top" src="~/img/Costa/mono cara blanca.jpeg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img class="card-img-top" src="~/img/Costa/codrile.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header" id="headingFive">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            Corales
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <div class="card-group">
-                            <div class="card">
-                                <img class="card-img-top" src="~/img/Costa/Zarigueya.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img class="card-img-top" src="~/img/Costa/mono cara blanca.jpeg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img class="card-img-top" src="~/img/Costa/codrile.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+          
         </div>
     </div>
 </section>
