@@ -8,7 +8,7 @@ namespace prueba.Models
         [Key]
         public int ContinenteId { get; set; }
         public string NombreContinente { get; set; }
-       public List<ContinenteEcosistema> ContinenteEcosisitema { get; set; }
+       public List<ContinenteClima> ContinenteEcosisitema { get; set; }
 
     }
 }

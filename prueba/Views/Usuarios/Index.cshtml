@@ -2,19 +2,13 @@
 
 @{
     ViewData["Title"] = "Index";
-
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+<h1>Index</h1>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ZooLine</title>
-</head>
-<body>
 <p>
-    <a asp-action="Create">Crear Nuevo Usuario</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -44,10 +38,10 @@
                 @Html.DisplayNameFor(model => model.Telefono)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Telefono)
+                @Html.DisplayNameFor(model => model.Titulo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FotografiaPerfil)
+                @Html.DisplayNameFor(model => model.NombreImagen)
             </th>
             <th></th>
         </tr>
@@ -80,16 +74,17 @@
                 @Html.DisplayFor(modelItem => item.Telefono)
             </td>
             <td>
-                <img src="" alt="Foto" class="rounded-circle"height="40" width="40" />           
+                @Html.DisplayFor(modelItem => item.Titulo)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.UsuarioId">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.UsuarioId">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.UsuarioId">Eliminar</a>
+                @Html.DisplayFor(modelItem => item.NombreImagen)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UsuarioId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UsuarioId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UsuarioId">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
-</body>
-</html>

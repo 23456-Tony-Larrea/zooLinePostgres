@@ -2,18 +2,13 @@
 
 @{
     ViewData["Title"] = "Index";
-  }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-<!DOCTYPE html>
+<h1>Index</h1>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
 <p>
-    <a asp-action="Create">Crear</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -37,7 +32,16 @@
                 @Html.DisplayNameFor(model => model.ancho)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fotoAnimal)
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreImagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Especie)
             </th>
             <th></th>
         </tr>
@@ -64,16 +68,23 @@
                 @Html.DisplayFor(modelItem => item.ancho)
             </td>
             <td>
-                <img src="" alt="Foto" class="rounded-circle" height="40" width="40" />
+                @Html.DisplayFor(modelItem => item.Titulo)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.AnimalId">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.AnimalId">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.AnimalId">Eliminar</a>
+                @Html.DisplayFor(modelItem => item.NombreImagen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Especie.EspecieId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AnimalId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.AnimalId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.AnimalId">Delete</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
-</body>
-</html>

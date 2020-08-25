@@ -16,6 +16,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.NombreEspecie)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Habitat)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -24,6 +27,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.NombreEspecie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Habitat.HabitatId)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.EspecieId">Edit</a> |

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,8 +10,6 @@ using prueba.Models;
 
 namespace ZooLine.Controllers
 {
-    //[Authorize(Roles = "Guia")]
-
     public class EspeciesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -25,7 +22,8 @@ namespace ZooLine.Controllers
         // GET: Especies
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Especie.ToListAsync());
+            var applicationDbContext = _context.Especie.Include(e => e.Habitat);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Especies/Details/5
@@ -37,6 +35,7 @@ namespace ZooLine.Controllers
             }
 
             var especie = await _context.Especie
+                .Include(e => e.Habitat)
                 .FirstOrDefaultAsync(m => m.EspecieId == id);
             if (especie == null)
             {
@@ -49,6 +48,7 @@ namespace ZooLine.Controllers
         // GET: Especies/Create
         public IActionResult Create()
         {
+            ViewData["HabitatId"] = new SelectList(_context.Habitat, "HabitatId", "HabitatId");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace ZooLine.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EspecieId,NombreEspecie")] Especie especie)
+        public async Task<IActionResult> Create([Bind("EspecieId,NombreEspecie,HabitatId")] Especie especie)
         {
             if (ModelState.IsValid)
             {
@@ -65,6 +65,7 @@ namespace ZooLine.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["HabitatId"] = new SelectList(_context.Habitat, "HabitatId", "HabitatId", especie.HabitatId);
             return View(especie);
         }
 
@@ -81,6 +82,7 @@ namespace ZooLine.Controllers
             {
                 return NotFound();
             }
+            ViewData["HabitatId"] = new SelectList(_context.Habitat, "HabitatId", "HabitatId", especie.HabitatId);
             return View(especie);
         }
 
@@ -89,7 +91,7 @@ namespace ZooLine.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EspecieId,NombreEspecie")] Especie especie)
+        public async Task<IActionResult> Edit(int id, [Bind("EspecieId,NombreEspecie,HabitatId")] Especie especie)
         {
             if (id != especie.EspecieId)
             {
@@ -116,6 +118,7 @@ namespace ZooLine.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["HabitatId"] = new SelectList(_context.Habitat, "HabitatId", "HabitatId", especie.HabitatId);
             return View(especie);
         }
 
@@ -128,6 +131,7 @@ namespace ZooLine.Controllers
             }
 
             var especie = await _context.Especie
+                .Include(e => e.Habitat)
                 .FirstOrDefaultAsync(m => m.EspecieId == id);
             if (especie == null)
             {

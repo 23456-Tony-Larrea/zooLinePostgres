@@ -1,33 +1,32 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using prueba.Data;
 using prueba.Models;
-using ZooLine.ViewModels;
 
 namespace ZooLine.Controllers
 {
-    // [Authorize(Roles = "Guia")]
-
     public class UsuariosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public UsuariosController(ApplicationDbContext context)
+        public UsuariosController(ApplicationDbContext context ,IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            this._hostEnvironment = hostEnvironment;
         }
 
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
-            var usuarios = await _context.Usuario.ToListAsync();
-            //usuarios.ForEach(p => p.FotografiaBase64 = $"data:image/png;base64,{Convert.ToBase64String(p.FotografiaPerfil)}");
-
-            return View(usuarios);
+            return View(await _context.Usuario.ToListAsync());
         }
 
         // GET: Usuarios/Details/5
@@ -59,40 +58,25 @@ namespace ZooLine.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(UsuarioViewModel modelo)
+        public async Task<IActionResult> Create([Bind("UsuarioId,PrimerNombre,SegundoNombre,PrimerApellido,SegundoApellido,CedulaIdentidad,Email,Contraseña,Telefono,Titulo,ImagenArchivo")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
-                Usuario usuario = new Usuario
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(usuario.ImagenArchivo.FileName);
+                string extension = Path.GetExtension(usuario.ImagenArchivo.FileName);
+                usuario.NombreImagen = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                string path = Path.Combine(wwwRootPath + "/Img/", fileName);
+                using(var fileStream=new FileStream(path,FileMode.Create))
                 {
-                    PrimerNombre = modelo.PrimerNombre,
-                    SegundoNombre = modelo.SegundoNombre,
-                    PrimerApellido = modelo.PrimerApellido,
-                    SegundoApellido = modelo.SegundoApellido,
-                    Contraseña = modelo.contraseña,
-                    Email = modelo.email,
-                    CedulaIdentidad = modelo.CedulaIdentidad,
-                    Telefono = modelo.telefono,
-                    FotografiaPerfil = await ArchivoSubidoAsync(modelo.FotografiaPerfil)
-
-                };
+                    await usuario.ImagenArchivo.CopyToAsync(fileStream);
+                }
+                 
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(modelo);
-        }
-
-        private async Task<byte[]> ArchivoSubidoAsync(IFormFile FotografiaPerfil)
-        {
-            if (FotografiaPerfil == null) return null;
-                var memoryStream = new MemoryStream();
-                await FotografiaPerfil.CopyToAsync(memoryStream);
-                var limite = 2097152;
-            if (memoryStream.Length < limite)
-               return memoryStream.ToArray(); 
-            return null;
-
+            return View(usuario);
         }
 
         // GET: Usuarios/Edit/5
@@ -116,7 +100,7 @@ namespace ZooLine.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UsuarioId,PrimerNombre,SegundoNombre,PrimerApellido,SegundoApellido,CedulaIdentidad,email,contraseña,telefono")] Usuario usuario)
+        public async Task<IActionResult> Edit(int id, [Bind("UsuarioId,PrimerNombre,SegundoNombre,PrimerApellido,SegundoApellido,CedulaIdentidad,Email,Contraseña,Telefono,Titulo,NombreImagen")] Usuario usuario)
         {
             if (id != usuario.UsuarioId)
             {
@@ -170,6 +154,10 @@ namespace ZooLine.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var usuario = await _context.Usuario.FindAsync(id);
+            var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "img", usuario.NombreImagen);
+            if (System.IO.File.Exists(imagePath))
+                System.IO.File.Delete(imagePath);
+      
             _context.Usuario.Remove(usuario);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

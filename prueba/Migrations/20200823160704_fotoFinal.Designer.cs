@@ -10,8 +10,8 @@ using prueba.Data;
 namespace ZooLine.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200807024245_Prueba")]
-    partial class Prueba
+    [Migration("20200823160704_fotoFinal")]
+    partial class fotoFinal
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -226,14 +226,21 @@ namespace ZooLine.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("FotografiaBase64")
-                        .HasColumnType("text");
+                    b.Property<int>("EspecieId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("NombreCientifico")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("NombreImagen")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -246,14 +253,16 @@ namespace ZooLine.Migrations
                     b.Property<int>("año_nacimiento")
                         .HasColumnType("integer");
 
+                    b.Property<string>("descripcion")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<decimal>("estatura")
                         .HasColumnType("numeric");
 
-                    b.Property<byte[]>("fotoAnimal")
-                        .IsRequired()
-                        .HasColumnType("bytea");
-
                     b.HasKey("AnimalId");
+
+                    b.HasIndex("EspecieId");
 
                     b.ToTable("Animales");
                 });
@@ -273,28 +282,6 @@ namespace ZooLine.Migrations
                     b.ToTable("Clima");
                 });
 
-            modelBuilder.Entity("prueba.Models.ClimaVegetacion", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("VegetacionId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("climaId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("VegetacionId");
-
-                    b.HasIndex("climaId");
-
-                    b.ToTable("ClimaVegetacion");
-                });
-
             modelBuilder.Entity("prueba.Models.Continente", b =>
                 {
                     b.Property<int>("ContinenteId")
@@ -310,66 +297,26 @@ namespace ZooLine.Migrations
                     b.ToTable("Continente");
                 });
 
-            modelBuilder.Entity("prueba.Models.ContinenteEcosistema", b =>
+            modelBuilder.Entity("prueba.Models.ContinenteClima", b =>
                 {
-                    b.Property<int>("ContinenteEcosistemaId")
+                    b.Property<int>("ContinenteClimaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("ClimaId")
+                        .HasColumnType("integer");
 
                     b.Property<int>("ContinenteId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("EcosistemaId")
-                        .HasColumnType("integer");
+                    b.HasKey("ContinenteClimaId");
 
-                    b.HasKey("ContinenteEcosistemaId");
+                    b.HasIndex("ClimaId");
 
                     b.HasIndex("ContinenteId");
 
-                    b.HasIndex("EcosistemaId");
-
-                    b.ToTable("ContinenteEcosistema");
-                });
-
-            modelBuilder.Entity("prueba.Models.Ecosistema", b =>
-                {
-                    b.Property<int>("EcosistemaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("CodigoEcosistema")
-                        .HasColumnType("text");
-
-                    b.Property<string>("NombreEcositem")
-                        .HasColumnType("text");
-
-                    b.HasKey("EcosistemaId");
-
-                    b.ToTable("Ecosistema");
-                });
-
-            modelBuilder.Entity("prueba.Models.EcosistemaHabitat", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("EcosistemaId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("HabitatId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EcosistemaId");
-
-                    b.HasIndex("HabitatId");
-
-                    b.ToTable("EcosistemaHabitat");
+                    b.ToTable("ContinenteClima");
                 });
 
             modelBuilder.Entity("prueba.Models.Especie", b =>
@@ -379,7 +326,7 @@ namespace ZooLine.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("AnimalId")
+                    b.Property<int>("HabitatId")
                         .HasColumnType("integer");
 
                     b.Property<string>("NombreEspecie")
@@ -387,7 +334,7 @@ namespace ZooLine.Migrations
 
                     b.HasKey("EspecieId");
 
-                    b.HasIndex("AnimalId");
+                    b.HasIndex("HabitatId");
 
                     b.ToTable("Especie");
                 });
@@ -506,8 +453,8 @@ namespace ZooLine.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
-                    b.Property<byte[]>("FotografiaPerfil")
-                        .HasColumnType("bytea");
+                    b.Property<string>("NombreImagen")
+                        .HasColumnType("text");
 
                     b.Property<string>("PrimerApellido")
                         .HasColumnType("text");
@@ -522,6 +469,9 @@ namespace ZooLine.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Telefono")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Titulo")
                         .HasColumnType("text");
 
                     b.HasKey("UsuarioId");
@@ -549,46 +499,6 @@ namespace ZooLine.Migrations
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("UsuarioRol");
-                });
-
-            modelBuilder.Entity("prueba.Models.Vegetacion", b =>
-                {
-                    b.Property<int>("VegetacionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("NombreVegetacion")
-                        .HasColumnType("text");
-
-                    b.HasKey("VegetacionId");
-
-                    b.ToTable("Vegetacion");
-                });
-
-            modelBuilder.Entity("prueba.Models.VegetacionAnimal", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("AnimalId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("AnimalesAnimalId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("VegetacionId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AnimalesAnimalId");
-
-                    b.HasIndex("VegetacionId");
-
-                    b.ToTable("VegetacionAnimal");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -642,56 +552,35 @@ namespace ZooLine.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("prueba.Models.ClimaVegetacion", b =>
+            modelBuilder.Entity("prueba.Models.Animales", b =>
                 {
-                    b.HasOne("prueba.Models.Vegetacion", "Vegetacion")
-                        .WithMany("ClimaVegetacion")
-                        .HasForeignKey("VegetacionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("prueba.Models.Clima", "Clima")
+                    b.HasOne("prueba.Models.Especie", "Especie")
                         .WithMany()
-                        .HasForeignKey("climaId")
+                        .HasForeignKey("EspecieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("prueba.Models.ContinenteEcosistema", b =>
+            modelBuilder.Entity("prueba.Models.ContinenteClima", b =>
                 {
+                    b.HasOne("prueba.Models.Clima", "Clima")
+                        .WithMany()
+                        .HasForeignKey("ClimaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("prueba.Models.Continente", "Continente")
                         .WithMany("ContinenteEcosisitema")
                         .HasForeignKey("ContinenteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("prueba.Models.Ecosistema", "Ecosistema")
-                        .WithMany()
-                        .HasForeignKey("EcosistemaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("prueba.Models.EcosistemaHabitat", b =>
-                {
-                    b.HasOne("prueba.Models.Ecosistema", "Ecosistema")
-                        .WithMany("EcosistemaHabitat")
-                        .HasForeignKey("EcosistemaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("prueba.Models.Habitat", "Habitat")
-                        .WithMany()
-                        .HasForeignKey("HabitatId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("prueba.Models.Especie", b =>
                 {
-                    b.HasOne("prueba.Models.Animales", "Animales")
+                    b.HasOne("prueba.Models.Habitat", "Habitat")
                         .WithMany()
-                        .HasForeignKey("AnimalId")
+                        .HasForeignKey("HabitatId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -737,19 +626,6 @@ namespace ZooLine.Migrations
                     b.HasOne("prueba.Models.Usuario", "Usuario")
                         .WithMany("UsuarioRoles")
                         .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("prueba.Models.VegetacionAnimal", b =>
-                {
-                    b.HasOne("prueba.Models.Animales", "Animales")
-                        .WithMany("VegetacionAnimal")
-                        .HasForeignKey("AnimalesAnimalId");
-
-                    b.HasOne("prueba.Models.Vegetacion", "Vegetacion")
-                        .WithMany()
-                        .HasForeignKey("VegetacionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

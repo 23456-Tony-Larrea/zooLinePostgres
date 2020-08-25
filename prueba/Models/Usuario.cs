@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -21,11 +23,12 @@ namespace prueba.Models
         public string Email { get; set; }
         public string Contraseña { get; set; }
         public string Telefono { get; set; }
-        [Display(Name="Su fotografia")]
-        public byte[] FotografiaPerfil { get; set; }
-        
+        public string Titulo { get; set; }
+        public string NombreImagen { get; set; }
         [NotMapped]
-        public string FotografiaBase64 { get; set; }
+        [DisplayName("subir archivo")]
+        public IFormFile ImagenArchivo { get; set; }
+
         public List <UsuarioRol>UsuarioRoles { get; set; }
 
     }

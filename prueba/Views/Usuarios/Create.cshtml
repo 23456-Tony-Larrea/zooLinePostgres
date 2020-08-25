@@ -1,24 +1,18 @@
-﻿@model ZooLine.ViewModels.UsuarioViewModel 
+﻿@model prueba.Models.Usuario
 
 @{
-    ViewData["Title"] = "Crear";
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Crear</title>
-</head>
-<body>
+<h1>Create</h1>
 
 <h4>Usuario</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data"method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger" ></div>
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="PrimerNombre" class="control-label"></label>
                 <input asp-for="PrimerNombre" class="form-control" />
@@ -45,44 +39,38 @@
                 <span asp-validation-for="CedulaIdentidad" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="email" class="control-label"></label>
-                <input asp-for="email" class="form-control" />
-                <span asp-validation-for="email" class="text-danger"></span>
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="contraseña" class="control-label"></label>
-                <input asp-for="contraseña" class="form-control" />
-                <span asp-validation-for="contraseña" class="text-danger"></span>
+                <label asp-for="Contraseña" class="control-label"></label>
+                <input asp-for="Contraseña" class="form-control" />
+                <span asp-validation-for="Contraseña" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="telefono" class="control-label"></label>
-                <input asp-for="telefono" class="form-control" />
-                <span asp-validation-for="telefono" class="text-danger"></span>
+                <label asp-for="Telefono" class="control-label"></label>
+                <input asp-for="Telefono" class="form-control" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FotografiaPerfil" class="control-label"></label>
-                <input asp-for="FotografiaPerfil" class="custom-file-input" id="custom-file"/>
-                <label class="custom-file-label" for="custom-file">Escoge una imagen</label>
-                <span asp-validation-for="FotografiaPerfil" class="text-danger"></span>
+                <label asp-for="Titulo" class="control-label"></label>
+                <input asp-for="Titulo" class="form-control" />
+                <span asp-validation-for="Titulo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Crear" class="btn btn-primary" />
+                <label asp-for="ImagenArchivo" class="control-label"></label>
+                <input asp-for="ImagenArchivo" accept="image/*" />
+                <span asp-validation-for="ImagenArchivo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Ir a la lista</a>
+    <a asp-action="Index">Back to List</a>
 </div>
-    @section Scripts{ 
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-<script type="text/javascript">
-    $(".custom-file-input").on("change", function () {
-        var fileName = $(this).val().split('\\').pop();
-        $(this).siblings(".custom-file-label").addClass("selected").html(fileName)
-    });
-</script>
-    }
-</body>
-</html>
+

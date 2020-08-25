@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using prueba.Data;
 using prueba.Models;
 
-namespace ZooLine.Models
+namespace ZooLine.Controllers
 {
-    //[Authorize(Roles = "Guia")]
-
     public class ToursController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -1,33 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using prueba.Data;
 using prueba.Models;
-using ZooLine.ViewModels;
 
 namespace ZooLine.Controllers
 {
-    //[Authorize(Roles = "Guia")]
     public class AnimalesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public AnimalesController(ApplicationDbContext context)
+        public AnimalesController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            this._hostEnvironment = hostEnvironment;
         }
 
         // GET: Animales
         public async Task<IActionResult> Index()
         {
-            var animal = await _context.Animales.ToListAsync();
-            animal.ForEach(p => p.FotografiaBase64 = $"data:~/image/png;base64,{Convert.ToBase64String(p.fotoAnimal)}");
-
-            return View(animal);
+            var applicationDbContext = _context.Animales.Include(a => a.Especie);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Animales/Details/5
@@ -39,6 +39,7 @@ namespace ZooLine.Controllers
             }
 
             var animales = await _context.Animales
+                .Include(a => a.Especie)
                 .FirstOrDefaultAsync(m => m.AnimalId == id);
             if (animales == null)
             {
@@ -51,6 +52,7 @@ namespace ZooLine.Controllers
         // GET: Animales/Create
         public IActionResult Create()
         {
+            ViewData["EspecieId"] = new SelectList(_context.Especie, "EspecieId", "EspecieId");
             return View();
         }
 
@@ -59,44 +61,30 @@ namespace ZooLine.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(AnimalesViewsMode modelo)
+        public async Task<IActionResult> Create([Bind("AnimalId,Nombre,NombreCientifico,año_nacimiento,año_muerte,estatura,ancho,Titulo,ImagenArchivo,descripcion,EspecieId")] Animales animales)
         {
             if (ModelState.IsValid)
             {
-                Animales animales = new Animales
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(animales.ImagenArchivo.FileName);
+                string extension = Path.GetExtension(animales.ImagenArchivo.FileName);
+                animales.NombreImagen = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                string path = Path.Combine(wwwRootPath + "/Img/", fileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
                 {
-                    Nombre = modelo.Nombre,
-                    ancho = modelo.ancho,
-                    año_muerte = modelo.año_muerte,
-                    año_nacimiento = modelo.año_nacimiento,
-                    estatura = modelo.estatura,
-                    NombreCientifico = modelo.NombreCientifico,
-                    fotoAnimal = await ArchivoSubidoAsync(modelo.fotoAnimal)
-
-                };
+                    await animales.ImagenArchivo.CopyToAsync(fileStream);
+                }
 
                 _context.Add(animales);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(modelo);
+            ViewData["EspecieId"] = new SelectList(_context.Especie, "EspecieId", "EspecieId", animales.EspecieId);
+            return View(animales);
         }
 
-        private async Task<byte[]> ArchivoSubidoAsync(IFormFile fotoAnimal)
-        {
-            if (fotoAnimal == null) return null;
-               var memoryStream = new MemoryStream();
-                await fotoAnimal.CopyToAsync(memoryStream);
-                var limiteMax = 2097152;
-               if (memoryStream.Length < limiteMax)
-
-                  return memoryStream.ToArray();
-                   return null;        
-        }
-
-
-           //// GET: Animales/Edit/5
-            public async Task<IActionResult> Edit(int? id)
+        // GET: Animales/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -108,6 +96,7 @@ namespace ZooLine.Controllers
             {
                 return NotFound();
             }
+            ViewData["EspecieId"] = new SelectList(_context.Especie, "EspecieId", "EspecieId", animales.EspecieId);
             return View(animales);
         }
 
@@ -116,7 +105,7 @@ namespace ZooLine.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AnimalId,Nombre,NombreCientifico,año_nacimiento,año_muerte,estatura,ancho,fotoAnimal")] Animales animales)
+        public async Task<IActionResult> Edit(int id, [Bind("AnimalId,Nombre,NombreCientifico,año_nacimiento,año_muerte,estatura,ancho,Titulo,NombreImagen,descripcion,EspecieId")] Animales animales)
         {
             if (id != animales.AnimalId)
             {
@@ -143,6 +132,7 @@ namespace ZooLine.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["EspecieId"] = new SelectList(_context.Especie, "EspecieId", "EspecieId", animales.EspecieId);
             return View(animales);
         }
 
@@ -155,6 +145,7 @@ namespace ZooLine.Controllers
             }
 
             var animales = await _context.Animales
+                .Include(a => a.Especie)
                 .FirstOrDefaultAsync(m => m.AnimalId == id);
             if (animales == null)
             {
@@ -170,6 +161,10 @@ namespace ZooLine.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var animales = await _context.Animales.FindAsync(id);
+            var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "img", animales.NombreImagen);
+            if (System.IO.File.Exists(imagePath))
+                System.IO.File.Delete(imagePath);
+
             _context.Animales.Remove(animales);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

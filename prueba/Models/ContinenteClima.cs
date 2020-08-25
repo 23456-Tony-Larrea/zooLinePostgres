@@ -3,14 +3,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace prueba.Models
 {
-    public class ContinenteEcosistema {
+    public class ContinenteClima {
        [Key]
-        public int ContinenteEcosistemaId { get; set; }
+        public int ContinenteClimaId { get; set; }
         [ForeignKey(name: "Continente")]
         public int ContinenteId { get; set; }
         public Continente Continente { get; set; }
-        [ForeignKey(name: "Ecosistema")]
-        public int EcosistemaId { get; set; }
-        public Ecosistema Ecosistema { get; set; }
+        [ForeignKey(name: "Clima")]
+        public int ClimaId { get; set; }
+        public Clima Clima { get; set; }
     }
 }

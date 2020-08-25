@@ -9,8 +9,8 @@ namespace prueba.Models
         public int EspecieId { get; set; }
         public string NombreEspecie { get; set; }
      
-        [ForeignKey(name: "Animales")]
-        public int AnimalId { get; set; }
-        public Animales Animales { get; set; }
+        [ForeignKey(name: "Habitat")]
+        public int HabitatId { get; set; }
+        public Habitat Habitat { get; set; }
     }
 }
