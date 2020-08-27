@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Tour</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear un nuevo tour</a>
 </p>
 <table class="table">
     <thead>
@@ -38,9 +38,9 @@
                 @Html.DisplayFor(modelItem => item.MaxUsuarios)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.TourId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TourId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TourId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.TourId">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.TourId">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.TourId">Eliminar</a>
             </td>
         </tr>
 }

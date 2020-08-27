@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using ZooLine.Controllers;
 
 namespace Identity.Controllers
 {
+    [Authorize(Roles="guia")]
     public class RoleController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;

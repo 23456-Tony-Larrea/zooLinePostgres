@@ -8,7 +8,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear Nuevo</a>
 </p>
 <table class="table">
     <thead>
@@ -32,9 +32,9 @@
                 @Html.DisplayFor(modelItem => item.Habitat.HabitatId)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.EspecieId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EspecieId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EspecieId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.EspecieId">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.EspecieId">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.EspecieId">Eliminar</a>
             </td>
         </tr>
 }
