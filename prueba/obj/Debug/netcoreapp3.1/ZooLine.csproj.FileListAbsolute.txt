@@ -277,8 +277,8 @@ D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Animales\Del
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Animales\Details.cshtml.g.cs
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Animales\Edit.cshtml.g.cs
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Animales\Index.cshtml.g.cs
-D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\ZooLine.csprojAssemblyReference.cache
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaCalidoOriente\Index.cshtml.g.cs
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaTempladoOriente\Index.cshtml.g.cs
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaPluviosoOriente\Index.cshtml.g.cs
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaPantanosoOriente\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\ZooLine.csprojAssemblyReference.cache
