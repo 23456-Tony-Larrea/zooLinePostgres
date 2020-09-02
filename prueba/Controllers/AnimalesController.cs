@@ -67,11 +67,23 @@ namespace ZooLine.Controllers
         {
             if (ModelState.IsValid)
             {
+                
+              
                 string wwwRootPath = _hostEnvironment.WebRootPath;
+                //lee el nombre del archivo sin extencion 
                 string fileName = Path.GetFileNameWithoutExtension(animales.ImagenArchivo.FileName);
+                // Lee nombre de la extencion del  archivo 
                 string extension = Path.GetExtension(animales.ImagenArchivo.FileName);
+
+                var ex = new List<string> { ".JPEG", ".JPG", ".PNG" };
+                var result = ex.FirstOrDefault(x => x.ToLower().Equals(extension.ToLower()));
+               // formato no aceptado 
+                if (result == null)
+                    throw new Exception("Image format no accepted");
+
                 animales.NombreImagen = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                string path = Path.Combine(wwwRootPath + "/Img/", fileName);
+                string path = Path.Combine(Path.Combine(wwwRootPath, "img/Animales"), fileName);
+
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
                     await animales.ImagenArchivo.CopyToAsync(fileStream);

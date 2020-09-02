@@ -1,29 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using prueba.Data;
-using prueba.Models;
-
+using ZooLine.Models;
 namespace ZooLine.Views.Costa
-{
+{ 
     public class ClimaCalidoCostaController : Controller
     {
-        private readonly ApplicationDbContext dbAplicacion;
+        private readonly ApplicationDbContext _dbAplicacion;
         public ClimaCalidoCostaController(ApplicationDbContext context)
         {
-            dbAplicacion = context;
+            _dbAplicacion = context;
         }
-        public IActionResult Index()
+        [Route("[controller]/{id?}")]
+        public async  Task<IActionResult> Index(string id)
         {
-            return View();
+            if (!int.TryParse(id, out var EspecieId))
+                return View(new List<CardModel>());
+
+           var animales =  await _dbAplicacion.Animales.Where(x=> x.EspecieId == EspecieId).OrderByDescending(x => x.AnimalId).Select(x => new CardModel
+            {
+                Descripcion = x.descripcion,
+                SubDescripcion = x.año_muerte.ToString(),
+                ImageUrl = x.NombreImagen,
+                SubTitulo = x.NombreCientifico,
+                Titulo = x.Nombre
+
+            }).ToListAsync();
+            return View(animales);
 
         }
-       /* public List<Animales> GetAnimales()
-        {
-            List<Animales> ListaAnimal=dbAplicacion.Animales.Where(animal=>animal.)
-        }*/
-       
+    
     }
 }
+     

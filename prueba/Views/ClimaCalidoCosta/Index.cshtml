@@ -1,6 +1,8 @@
-﻿@model IEnumerable<prueba.Models.Animales>
+﻿@model IEnumerable<ZooLine.Models.CardModel>
 @{
+
     ViewData["Title"] = "ClimaCalidoCosta";
+    var cardClass = (Model.Count() > 1) ? "mx-auto mb-2 col-sm-12 col-md-4 col-lg-4" : "mx-auto mb-2 col-sm-12 col-md-12 col-lg-12";
 }
 
 <head>
@@ -26,7 +28,7 @@
 </div>
 <section>
     <div class="accordion" id="accordionExample">
-        
+
         <div class="card">
             <div class="card-header" id="headingOne">
                 <h2 class="mb-0">
@@ -34,49 +36,36 @@
                         Matorral Seco de la Costa
                     </button>
                 </h2>
-            </div>          
+            </div>
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                     <div class="card-group">
-                        <div class="card">
-                            <img class="card-img-top" src="~/img/Costa/shutterstock_256752703.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h3 class="card-title">Cangrejo</h3>
-                                <h5 class="card-title">Nombre Cientifico: Brachyura</h5>
-                                <p class="card-text">
-                                    Se llama cangrejos a diversos crustáceos del orden de los decápodos. Este orden, caracterizado por tener cinco pares de patas,
-                                    de los cuales dos suelen ser sus pinzas, incluye a los crustáceos de mayor tamaño, como langostas,
-                                    gambas y camarones, además de las diversas formas que se llaman cangrejos.
-                                </p>
-                                <p class="card-text"><small class="text-muted">Viven aproximadamente 30 años</small></p>
-                            </div>
+                        <div class="row">
+                            @foreach (var animal in Model)
+                            {
+                                <div class="@cardClass">
+                                    <div class="card">
+                                        <img class="card-img-top" src="~/img/Animales/@animal.ImageUrl" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h3 class="card-title">@animal.Titulo</h3>
+                                            <h5 class="card-title">Nombre Cientifico: @animal.SubTitulo</h5>
+                                            <p class="card-text">
+                                                @animal.Descripcion
+                                            </p>
+                                            <p class="card-text"><small class="text-muted">Viven Aproximadamente:@animal.SubDescripcion años</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
                         </div>
-                        <br>
-                           <div class="card">
-                            <img        class="card-img-top" src="~/img/Costa/codrile.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Nombre Cientifico: Cocodrile</h5>
-                                <p class="card-text">Los caimanes miden alrededor de 1.2-2.5 m de largo, pudiendo medir un poco más en algunas ocasiones. El peso varía, siendo un aproximado de 7-62 kilos,
-                                aunque este peso también puede ser mayor de acuerdo con la estructura física del reptil.</p>
-                                <p class="card-text"><small class="text-muted">Viven aproximadamente 40 años</small></p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img class="card-img-top" src="~/img/Costa/Zarigueya.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Nombre Cientifico: Caluromys derbianus</h5>
-                                <p class="card-text">	las Zarigüeya vista por primera vez en 1903, por la exploradora e investigadora Rachel Thamargo.
-                                Sabemos poco de ella y de como fue el descubrimiento. Rachel Thamargo era profesora licenciada en antropología de la universidad de Oxford. 
-                                Su investigación se centró en la teoría de Darwin y en la especie de los zorros y las zorras. Gracias al trabajo de la profesora thamargo y a sus múltiples estudios, 
-                                la comunidad científica aprendió mucho acerca del comportamiento de los zorros y las zorras.</p>
-                                <p class="card-text"><small class="text-muted">Viven aproximadamente 2 años</small></p>
-                            </div>
-                        </div>
+
+                        <br />
 
                     </div>
                 </div>
             </div>
-          
         </div>
     </div>
+
 </section>
