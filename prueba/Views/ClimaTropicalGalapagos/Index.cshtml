@@ -1,6 +1,7 @@
-﻿@{
+﻿@model IEnumerable<ZooLine.Models.CardModel>
+@{
     ViewData["Title"] = "ClimaTropicalGalapagos";
-    // Layout = "~/Views/Home/Index.cshtml";
+    var cardClass = (Model.Count() > 1) ? "mx-auto mb-2 col-sm-12 col-md-4 col-lg-4" : "mx-auto mb-2 col-sm-12 col-md-12 col-lg-12";
 }
 
 <head>
@@ -35,33 +36,30 @@
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                     <div class="card-group">
-                        <div class="card">
-                            <img class="card-img-top" src="~/img/Costa/shutterstock_256752703.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Cangrejo</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img class="card-img-top" src="~/img/Costa/iguana.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img class="card-img-top" src="~/img/Costa/mono.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
+                        <div class="row">
+                            @foreach (var animal in Model)
+                            {
+                                <div class="@cardClass">
+                                    <div class="card">
+                                        <img class="card-img-top" src="~/img/Animales/@animal.ImageUrl" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h3 class="card-title">@animal.Titulo</h3>
+                                            <h5 class="card-title">Nombre Cientifico: @animal.SubTitulo</h5>
+                                            <p class="card-text">
+                                                @animal.Descripcion
+                                            </p>
+                                            <p class="card-text"><small class="text-muted">Viven Aproximadamente:@animal.SubDescripcion años</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
                         </div>
 
+                        <br />
+
                     </div>
-                </div>
+                </div>   
             </div>
         </div>
     </div>
