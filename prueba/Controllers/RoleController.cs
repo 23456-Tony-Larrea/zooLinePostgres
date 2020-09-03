@@ -15,8 +15,8 @@ namespace Identity.Controllers
     public class RoleController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
-        private readonly UserManager<IdentityUser> userManager;
-        public RoleController(RoleManager<IdentityRole> roleMgr, UserManager<IdentityUser> userMgr)
+        private readonly UserManager<Usuario> userManager;
+        public RoleController(RoleManager<IdentityRole> roleMgr, UserManager<Usuario> userMgr)
         {
             roleManager = roleMgr;
             userManager = userMgr;
@@ -66,11 +66,11 @@ namespace Identity.Controllers
            
              var role = await roleManager.FindByIdAsync(id);
 
-                List<IdentityUser> members = new List<IdentityUser>();
-                List<IdentityUser> nonMembers = new List<IdentityUser>();
+                List<Usuario> members = new List<Usuario>();
+                List<Usuario> nonMembers = new List<Usuario>();
               var users = await  userManager.Users.ToListAsync();
                  
-                    foreach (IdentityUser user in users)
+                    foreach (Usuario user in users)
                     {
                         var list = await userManager.IsInRoleAsync(user, role.Name) ? members : nonMembers;
                         list.Add(user);
@@ -96,7 +96,7 @@ namespace Identity.Controllers
                 {
                     foreach (string userId in model.AddIds ?? new string[] { })
                     {
-                        IdentityUser user = await userManager.FindByIdAsync(userId);
+                        Usuario user = await userManager.FindByIdAsync(userId);
                         if (user != null)
                         {
                             result = await userManager.AddToRoleAsync(user, model.RoleName);
@@ -109,7 +109,7 @@ namespace Identity.Controllers
                     {
                         foreach (string userId in model.DeleteIds ?? new string[] { })
                         {
-                            IdentityUser user = await userManager.FindByIdAsync(userId);
+                            Usuario user = await userManager.FindByIdAsync(userId);
                             if (user != null)
                             {
                                 result = await userManager.RemoveFromRoleAsync(user, model.RoleName);

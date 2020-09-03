@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using prueba.Models;
 using System.Collections.Generic;
 
 namespace Identity.Controllers
@@ -6,7 +7,7 @@ namespace Identity.Controllers
     public class RoleEdit
     {
         public IdentityRole Role { get; set; }
-        public List<IdentityUser> Members { get; set; }
-        public List<IdentityUser> NonMembers { get; set; }
+        public List<Usuario> Members { get; set; }
+        public List<Usuario> NonMembers { get; set; }
     }
 }

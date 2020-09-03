@@ -42,6 +42,9 @@ namespace prueba
                   });
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddScoped<UserManager<Usuario>>();
+            services.AddScoped(typeof(SignInManager<>));
+            services.AddScoped(typeof(UserManager<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -84,7 +87,7 @@ namespace prueba
                 endpoints.MapRazorPages();
              
             });
-           
+            
         }
     }
 }
