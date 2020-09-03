@@ -34,3 +34,4 @@ namespace ZooLine.Views.ClimaTempladoGalapagos
             return View(animales);
         }
     }
+}

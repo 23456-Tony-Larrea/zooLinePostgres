@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using prueba.Data;
 using prueba.Models;
+using ZooLine.Models;
 
 namespace ZooLine.Controllers
 {
@@ -48,10 +49,13 @@ namespace ZooLine.Controllers
         }
 
         // GET: Especies/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["HabitatId"] = new SelectList(_context.Habitat, "HabitatId", "HabitatId");
-            return View();
+            var model = new HabitatModifyModel();
+            model.Habitas = new SelectList((await _context.Habitat.Select(x => new { key = x.HabitatId, name = x.NombreHabitat }).Distinct().ToListAsync()),"key", "name");
+        
+           
+            return View(model);
         }
 
         // POST: Especies/Create
@@ -59,33 +63,52 @@ namespace ZooLine.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EspecieId,NombreEspecie,HabitatId")] Especie especie)
+        public async Task<IActionResult> Create(HabitatModifyModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(especie);
+               var habitat =  _context.Habitat.FirstOrDefault(x => x.HabitatId.Equals(model.HabitatId));
+                if(habitat == null)
+                {
+                    ModelState.AddModelError("HabitatId", "HabitaId no fue encontrado");
+                    return View();
+                }
+                _context.Add(new Especie { 
+                        EspecieId = model.EspecieId,
+                       HabitatId = habitat.HabitatId,
+                       Habitat = habitat, 
+                       NombreEspecie = model.NombreEspecie
+                });
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HabitatId"] = new SelectList(_context.Habitat, "HabitatId", "HabitatId", especie.HabitatId);
-            return View(especie);
+         
+            return View();
         }
 
         // GET: Especies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+           
             if (id == null)
             {
                 return NotFound();
             }
 
-            var especie = await _context.Especie.FindAsync(id);
-            if (especie == null)
+            var model = await _context.Especie.Select(especie => new HabitatModifyModel
+            {
+                HabitatId = especie.HabitatId,
+                NombreEspecie = especie.NombreEspecie,
+                EspecieId = especie.EspecieId,
+
+            }).FirstOrDefaultAsync(x => x.EspecieId.Equals(id));
+
+            if (model == null)
             {
                 return NotFound();
             }
-            ViewData["HabitatId"] = new SelectList(_context.Habitat, "HabitatId", "HabitatId", especie.HabitatId);
-            return View(especie);
+            model.Habitas = new SelectList((await _context.Habitat.Select(x => new { key = x.HabitatId, name = x.NombreHabitat }).Distinct().ToListAsync()), "key", "name");
+            return View(model);
         }
 
         // POST: Especies/Edit/5

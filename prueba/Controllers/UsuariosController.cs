@@ -32,7 +32,7 @@ namespace ZooLine.Controllers
         }
 
         // GET: Usuarios/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -40,7 +40,7 @@ namespace ZooLine.Controllers
             }
 
             var usuario = await _context.Usuario
-                .FirstOrDefaultAsync(m => m.UsuarioId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (usuario == null)
             {
                 return NotFound();
@@ -102,9 +102,9 @@ namespace ZooLine.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UsuarioId,PrimerNombre,SegundoNombre,PrimerApellido,SegundoApellido,CedulaIdentidad,Email,Contraseña,Telefono,Titulo,NombreImagen")] Usuario usuario)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,PrimerNombre,SegundoNombre,PrimerApellido,SegundoApellido,CedulaIdentidad,Email,Contraseña,Telefono,Titulo,NombreImagen")] Usuario usuario)
         {
-            if (id != usuario.UsuarioId)
+            if (id != usuario.Id)
             {
                 return NotFound();
             }
@@ -118,7 +118,7 @@ namespace ZooLine.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UsuarioExists(usuario.UsuarioId))
+                    if (!UsuarioExists(usuario.Id))
                     {
                         return NotFound();
                     }
@@ -133,7 +133,7 @@ namespace ZooLine.Controllers
         }
 
         // GET: Usuarios/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
@@ -141,7 +141,7 @@ namespace ZooLine.Controllers
             }
 
             var usuario = await _context.Usuario
-                .FirstOrDefaultAsync(m => m.UsuarioId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (usuario == null)
             {
                 return NotFound();
@@ -153,7 +153,7 @@ namespace ZooLine.Controllers
         // POST: Usuarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var usuario = await _context.Usuario.FindAsync(id);
             var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "img", usuario.NombreImagen);
@@ -165,9 +165,9 @@ namespace ZooLine.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UsuarioExists(int id)
+        private bool UsuarioExists(string id)
         {
-            return _context.Usuario.Any(e => e.UsuarioId == id);
+            return _context.Usuario.Any(e => e.Id == id);
         }
     }
 }
