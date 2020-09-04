@@ -65,41 +65,6 @@
                 </div>
             </div>
         </div>
-        <div class="card-header" id="headingTwo">
-            <h2 class="mb-0">
-                <button class="btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    Bosque Montano Occidental
-                </button>
-            </h2>
-        </div>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
-            <div class="card-body">
-                <div class="card-group">
-                    <div class="row">
-                        @foreach (var animal in Model)
-                        {
-                            <div class="@cardClass">
-                                <div class="card">
-                                    <img class="card-img-top" src="~/img/Animales/@animal.ImageUrl" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h3 class="card-title">@animal.Titulo</h3>
-                                        <h5 class="card-title">Nombre Cientifico: @animal.SubTitulo</h5>
-                                        <p class="card-text">
-                                            @animal.Descripcion
-                                        </p>
-                                        <p class="card-text"><small class="text-muted">Viven Aproximadamente:@animal.SubDescripcion años</small></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        }
-                    </div>
-
-                    <br />
-
-                </div>
-            </div>
-        </div>
-
+     
     </div>
 </section>

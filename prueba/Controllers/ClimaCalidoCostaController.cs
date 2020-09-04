@@ -22,16 +22,7 @@ namespace ZooLine.Views.Costa
         [Route("[controller]/Index")]
         public async Task<IActionResult> Index()
         {
-            //listas List, Hashet , Dictonary 
-            //Generics 
-            //Lambda
-            //linq
-            //Iqueryble 
-            //Delegates
-            //Extencion Methods
-
-            //pagination
-            //Linq pagination
+            
             var animales = await _dbAplicacion.Animales.Where(x => x.EspecieId <= 5 && x.EspecieId > 0).OrderByDescending(x => x.AnimalId).Select(x => new CardModel
             {
                 Descripcion = x.descripcion,
