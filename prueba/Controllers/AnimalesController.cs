@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using prueba.Data;
 using prueba.Models;
-
 namespace ZooLine.Controllers
 {
     [Authorize(Roles = "guia")]

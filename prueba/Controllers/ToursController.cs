@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +10,6 @@ using prueba.Models;
 
 namespace ZooLine.Controllers
 {
-    [Authorize(Roles = "guia")]
     public class ToursController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,7 +22,8 @@ namespace ZooLine.Controllers
         // GET: Tours
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Tour.ToListAsync());
+            var applicationDbContext = _context.Tour.Include(t => t.Usuario);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Tours/Details/5
@@ -36,6 +35,7 @@ namespace ZooLine.Controllers
             }
 
             var tour = await _context.Tour
+                .Include(t => t.Usuario)
                 .FirstOrDefaultAsync(m => m.TourId == id);
             if (tour == null)
             {
@@ -48,6 +48,7 @@ namespace ZooLine.Controllers
         // GET: Tours/Create
         public IActionResult Create()
         {
+            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "Id");
             return View();
         }
 
@@ -56,7 +57,7 @@ namespace ZooLine.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TourId,HoraEntrada,HoraSalida,MaxUsuarios")] Tour tour)
+        public async Task<IActionResult> Create([Bind("TourId,UsuarioId,HoraEntrada,HoraSalida,MaxUsuarios")] Tour tour)
         {
             if (ModelState.IsValid)
             {
@@ -64,6 +65,7 @@ namespace ZooLine.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "Id", tour.UsuarioId);
             return View(tour);
         }
 
@@ -80,6 +82,7 @@ namespace ZooLine.Controllers
             {
                 return NotFound();
             }
+            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "Id", tour.UsuarioId);
             return View(tour);
         }
 
@@ -88,7 +91,7 @@ namespace ZooLine.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TourId,HoraEntrada,HoraSalida,MaxUsuarios")] Tour tour)
+        public async Task<IActionResult> Edit(int id, [Bind("TourId,UsuarioId,HoraEntrada,HoraSalida,MaxUsuarios")] Tour tour)
         {
             if (id != tour.TourId)
             {
@@ -115,6 +118,7 @@ namespace ZooLine.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["UsuarioId"] = new SelectList(_context.Usuario, "Id", "Id", tour.UsuarioId);
             return View(tour);
         }
 
@@ -127,6 +131,7 @@ namespace ZooLine.Controllers
             }
 
             var tour = await _context.Tour
+                .Include(t => t.Usuario)
                 .FirstOrDefaultAsync(m => m.TourId == id);
             if (tour == null)
             {

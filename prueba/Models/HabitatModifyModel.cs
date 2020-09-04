@@ -5,13 +5,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ZooLine.Models
+ namespace ZooLine.Models
 {
     public class HabitatModifyModel
     {
    
-        public int EspecieId { get; set; }
-        
+        public int EspecieId { get; set; }   
         public string NombreEspecie { get; set; }
         public int HabitatId { get; set; }
         public SelectList Habitas { get; set; }
