@@ -3,32 +3,34 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using prueba.Data;
 using prueba.Models;
+using ZooLine.Models;
+
 namespace ZooLine.Controllers
 {
     [Authorize(Roles = "guia")]
-    public class AnimalesController : Controller
+    public class AnimalesController : ControlladorBase
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IWebHostEnvironment _hostEnvironment;
-
-        public AnimalesController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
+        public AnimalesController(IMapper mapper, ApplicationDbContext context, IWebHostEnvironment hostEnvironment) : base(mapper, context, hostEnvironment)
         {
-            _context = context;
-            this._hostEnvironment = hostEnvironment;
         }
-
         // GET: Animales
+
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Animales.Include(a => a.Especie);
-            return View(await applicationDbContext.ToListAsync());
+
+            var data = await _context.Animales.Include(x=> x.Especie).Select(x => x).ToListAsync();
+            var model = new AnimalIndexModel{  Data = Map<List<AnimalIndexDataModel>>(data) };
+            return View(model);
         }
 
         // GET: Animales/Details/5
@@ -53,8 +55,10 @@ namespace ZooLine.Controllers
         // GET: Animales/Create
         public IActionResult Create()
         {
-            ViewData["EspecieId"] = new SelectList(_context.Especie, "EspecieId", "EspecieId");
-            return View();
+            var model = new AnimalModifyModel();
+            model.Especies = new SelectList(_context.Especie.Select(x => new { key = x.NombreEspecie, value = x.EspecieId }).Distinct().OrderBy(x => x.key).ToList(),  "value", "key");
+       
+            return View(model);
         }
 
         // POST: Animales/Create
@@ -62,38 +66,54 @@ namespace ZooLine.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AnimalId,Nombre,NombreCientifico,año_nacimiento,año_muerte,estatura,ancho,Titulo,ImagenArchivo,descripcion,EspecieId")] Animales animales)
+        public async Task<IActionResult> Create(AnimalModifyModel model)
         {
+            
             if (ModelState.IsValid)
             {
-                
-              
-                string wwwRootPath = _hostEnvironment.WebRootPath;
-                //lee el nombre del archivo sin extencion 
-                string fileName = Path.GetFileNameWithoutExtension(animales.ImagenArchivo.FileName);
-                // Lee nombre de la extencion del  archivo 
-                string extension = Path.GetExtension(animales.ImagenArchivo.FileName);
+                var especie = _context.Especie.FirstOrDefault(x => x.EspecieId.Equals(model.EspecieId));
+                //automapper 
+                //new Animales
+                //{
+                //    AnimalId = model.AnimalId,
+                //    EspecieId = especie.EspecieId,
+                //    Especie = especie,
+                //    Nombre = model.Nombre,
+                //    NombreCientifico = model.NombreCientifico,
+                //    NombreImagen = model.NombreImagen,
+                //    ancho = model.ancho,
+                //    año_muerte = model.año_muerte,
+                //    año_nacimiento = model.año_nacimiento,
+                //    descripcion = model.descripcion,
+                //    estatura = model.estatura,
 
+                //    Titulo = model.Titulo
+                //}
+                var data = Map<Animales>(model);
+                data.Especie = especie;
+                _context.Add(data);
+                string wwwRootPath = _hostEnvironment.WebRootPath; 
+                string fileName = Path.GetFileNameWithoutExtension(model.ImagenArchivo.FileName);
+                string extension = Path.GetExtension(model.ImagenArchivo.FileName);
                 var ex = new List<string> { ".JPEG", ".JPG", ".PNG" };
                 var result = ex.FirstOrDefault(x => x.ToLower().Equals(extension.ToLower()));
-               // formato no aceptado 
                 if (result == null)
                     throw new Exception("Image format no accepted");
 
-                animales.NombreImagen = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+               data.NombreImagen = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
                 string path = Path.Combine(Path.Combine(wwwRootPath, "img/Animales"), fileName);
 
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
-                    await animales.ImagenArchivo.CopyToAsync(fileStream);
+                    await model.ImagenArchivo.CopyToAsync(fileStream);
                 }
 
-                _context.Add(animales);
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EspecieId"] = new SelectList(_context.Especie, "EspecieId", "EspecieId", animales.EspecieId);
-            return View(animales);
+         
+            return View(model);
         }
 
         // GET: Animales/Edit/5
@@ -103,14 +123,29 @@ namespace ZooLine.Controllers
             {
                 return NotFound();
             }
+            var model = await _context.Animales.Select(animal => new AnimalModifyModel
+            {
+                AnimalId = animal.AnimalId,
+                ancho = animal.ancho,
+                año_muerte = animal.año_muerte,
+                año_nacimiento = animal.año_nacimiento,
+                descripcion=animal.descripcion,
+                estatura=animal.estatura,
+                NombreCientifico=animal.NombreCientifico,
+                Nombre=animal.Nombre,
+                NombreImagen=animal.NombreImagen,
+                Titulo=animal.Titulo,
+                EspecieId=animal.EspecieId,
+      
+            }).FirstOrDefaultAsync(x => x.AnimalId.Equals(id));
 
             var animales = await _context.Animales.FindAsync(id);
             if (animales == null)
             {
                 return NotFound();
             }
-            ViewData["EspecieId"] = new SelectList(_context.Especie, "EspecieId", "EspecieId", animales.EspecieId);
-            return View(animales);
+            model.Especies = new SelectList((await _context.Especie.Select(x => new { key = x.EspecieId, name = x.NombreEspecie }).Distinct().ToListAsync()), "key", "name");
+            return View(model);
         }
 
         // POST: Animales/Edit/5

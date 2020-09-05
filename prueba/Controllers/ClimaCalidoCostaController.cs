@@ -15,9 +15,6 @@ namespace ZooLine.Views.Costa
             _dbAplicacion = context;
         }
 
-
-
-
         [Route("[controller]")]
         [Route("[controller]/Index")]
         public async Task<IActionResult> Index()

@@ -1,8 +1,8 @@
-﻿@model IEnumerable<prueba.Models.Animales>
+﻿@model ZooLine.Models.AnimalIndexModel
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = Model.TituloDePagina;
+    Layout = Model.Layout;
 }
 
 <h1>Index</h1>
@@ -10,44 +10,47 @@
 <p>
     <a asp-action="Create">Crear nuevo</a>
 </p>
+@if (Model.Data.Count > 0)
+{
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
+                @Html.DisplayNameFor(model => model.Data.FirstOrDefault().Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NombreCientifico)
+                @Html.DisplayNameFor(model => model.Data.FirstOrDefault().NombreCientifico)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.año_nacimiento)
+                @Html.DisplayNameFor(model => model.Data.FirstOrDefault().año_nacimiento)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.año_muerte)
+                @Html.DisplayNameFor(model => model.Data.FirstOrDefault().año_muerte)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.estatura)
+                @Html.DisplayNameFor(model => model.Data.FirstOrDefault().estatura)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ancho)
+                @Html.DisplayNameFor(model => model.Data.FirstOrDefault().ancho)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Titulo)
+                @Html.DisplayNameFor(model => model.Data.FirstOrDefault().Titulo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NombreImagen)
+                @Html.DisplayNameFor(model => model.Data.FirstOrDefault().NombreImagen)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.descripcion)
+                @Html.DisplayNameFor(model => model.Data.FirstOrDefault().descripcion)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Especie)
+                @Html.DisplayNameFor(model => model.Data.FirstOrDefault().Especie)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Data)
+{
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
@@ -77,7 +80,7 @@
                 @Html.DisplayFor(modelItem => item.descripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Especie.EspecieId)
+                @Html.DisplayFor(modelItem => item.Especie)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.AnimalId">Editar</a> |
@@ -88,3 +91,8 @@
 }
     </tbody>
 </table>
+}else { 
+
+    <div class="alert-danger"> No se encontro ningun dato </div>
+
+}

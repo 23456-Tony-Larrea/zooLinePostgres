@@ -7,7 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using prueba.Models;
-
+using ZooLine;
+using AutoMapper;
 namespace prueba
 {
     public class Startup
@@ -45,9 +46,9 @@ namespace prueba
             services.AddScoped<UserManager<Usuario>>();
             services.AddScoped(typeof(SignInManager<>));
             services.AddScoped(typeof(UserManager<>));
+            services.AddAutoMapper(typeof(AutoMapperSetup));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -58,7 +59,6 @@ namespace prueba
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -68,17 +68,6 @@ namespace prueba
 
             app.UseAuthentication();
             app.UseAuthorization();
-            //websockest 
-            //SignalR 
-            //app.Use(async (context, next) =>
-            //{
-            //    await next();
-            //    if (context.Response.StatusCode == 404)
-            //    {
-            //        context.Request.HttpContext.Response.Redirect("/Home/PageNotFound");
-            //        await next();
-            //    }
-            //});
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

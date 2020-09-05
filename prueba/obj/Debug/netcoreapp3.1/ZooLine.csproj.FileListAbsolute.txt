@@ -241,9 +241,6 @@ D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pag
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 D:\PV3ERO\ZooLine\prueba\prueba\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.Google.dll
 D:\PV3ERO\ZooLine\prueba\prueba\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.Facebook.dll
-D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\ZooLine.csproj.CoreCompileInputs.cache
-D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\ZooLine.MvcApplicationPartsAssemblyInfo.cs
-D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\ZooLine.MvcApplicationPartsAssemblyInfo.cache
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Menu\Index.cshtml.g.cs
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaCosta\Index.cshtml.g.cs
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ClimaSierra\Index.cshtml.g.cs
@@ -275,3 +272,8 @@ D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Tours\Delete
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Tours\Details.cshtml.g.cs
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Tours\Edit.cshtml.g.cs
 D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Tours\Index.cshtml.g.cs
+D:\PV3ERO\ZooLine\prueba\prueba\bin\Debug\netcoreapp3.1\AutoMapper.dll
+D:\PV3ERO\ZooLine\prueba\prueba\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\ZooLine.csproj.CoreCompileInputs.cache
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\ZooLine.MvcApplicationPartsAssemblyInfo.cs
+D:\PV3ERO\ZooLine\prueba\prueba\obj\Debug\netcoreapp3.1\ZooLine.MvcApplicationPartsAssemblyInfo.cache
