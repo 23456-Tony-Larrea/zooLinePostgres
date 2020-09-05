@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\SierraController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Views\Habitats\Create.cshtml~RFce9883f.TMP" />
   </ItemGroup>
 
