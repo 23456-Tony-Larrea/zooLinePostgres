@@ -20,7 +20,7 @@ namespace ZooLine.Views.ClimaPluviosoOriente
         public async Task<IActionResult> Index()
         {
 
-            var animales = await _dbAplicacion.Animales.Where(x => x.EspecieId <= 30 && x.EspecieId > 26).OrderByDescending(x => x.AnimalId).Select(x => new CardModel
+            var animales = await _dbAplicacion.Animales.Where(x => x.EspecieId == 74|| x.EspecieId == 73||x.EspecieId == 75|| x.EspecieId == 72).OrderByDescending(x => x.AnimalId).Select(x => new CardModel
             {
                 Descripcion = x.descripcion,
                 SubDescripcion = x.año_muerte.ToString(),

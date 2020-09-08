@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+    
 <h1>Crear</h1>
 
 <h4>Animales</h4>
@@ -35,12 +35,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="estatura" class="control-label"></label>
-                <input asp-for="estatura" class="form-control" />
+                <input asp-for="estatura" class="form-control" />cm/mm/m
                 <span asp-validation-for="estatura" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ancho" class="control-label"></label>
-                <input asp-for="ancho" class="form-control" />
+                <input asp-for="ancho" class="form-control" />kg/gr
                 <span asp-validation-for="ancho" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -55,7 +55,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="descripcion" class="control-label"></label>
-                <input asp-for="descripcion" class="form-control" />
+                <textarea asp-for="descripcion" class="form-control" rows="6"></textarea>
                 <span asp-validation-for="descripcion" class="text-danger"></span>
             </div>
             <div class="form-group">

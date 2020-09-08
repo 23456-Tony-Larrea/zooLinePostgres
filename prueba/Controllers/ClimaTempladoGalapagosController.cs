@@ -15,7 +15,25 @@ namespace ZooLine.Views.ClimaTempladoGalapagos
         {
             _dbAplicacion = context;
         }
-        [Route("[controller]/{id?}")]
+        [Route("[controller]")]
+        [Route("[controller]/Index")]
+        public async Task<IActionResult> Index()
+        {
+
+            var animales = await _dbAplicacion.Animales.Where(x => x.EspecieId == 47 || x.EspecieId == 50 || x.EspecieId == 48 || x.EspecieId == 49).OrderByDescending(x => x.AnimalId).Select(x => new CardModel
+            {
+                Descripcion = x.descripcion,
+                SubDescripcion = x.año_muerte.ToString(),
+                ImageUrl = x.NombreImagen,
+                SubTitulo = x.NombreCientifico,
+                Titulo = x.Nombre
+
+            }).ToListAsync();
+            return View(animales);
+
+        }
+
+        [Route("[controller]/{id}")]
         public async Task<IActionResult> Index(string id)
         {
             if (!int.TryParse(id, out var EspecieId))
@@ -31,6 +49,9 @@ namespace ZooLine.Views.ClimaTempladoGalapagos
 
             }).ToListAsync();
             return View(animales);
+
         }
+
+
     }
 }
