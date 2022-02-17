@@ -27,6 +27,7 @@ namespace prueba.Controllers
         {
             return Index();
         }
+
         public IActionResult Menu()
         {
             return Index();
@@ -37,6 +38,10 @@ namespace prueba.Controllers
         }
 
         public IActionResult PageNotFound()
+        {
+            return View();
+        }
+        public ActionResult Mision()
         {
             return View();
         }

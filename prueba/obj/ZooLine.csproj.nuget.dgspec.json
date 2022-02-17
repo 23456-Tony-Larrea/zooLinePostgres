@@ -1,23 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\PV3ERO\\ZooLine\\prueba\\prueba\\ZooLine.csproj": {}
+    "D:\\ZooLine\\zooLinePostgres\\prueba\\ZooLine.csproj": {}
   },
   "projects": {
-    "D:\\PV3ERO\\ZooLine\\prueba\\prueba\\ZooLine.csproj": {
+    "D:\\ZooLine\\zooLinePostgres\\prueba\\ZooLine.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PV3ERO\\ZooLine\\prueba\\prueba\\ZooLine.csproj",
+        "projectUniqueName": "D:\\ZooLine\\zooLinePostgres\\prueba\\ZooLine.csproj",
         "projectName": "ZooLine",
-        "projectPath": "D:\\PV3ERO\\ZooLine\\prueba\\prueba\\ZooLine.csproj",
+        "projectPath": "D:\\ZooLine\\zooLinePostgres\\prueba\\ZooLine.csproj",
         "packagesPath": "C:\\Users\\avsla\\.nuget\\packages\\",
-        "outputPath": "D:\\PV3ERO\\ZooLine\\prueba\\prueba\\obj\\",
+        "outputPath": "D:\\ZooLine\\zooLinePostgres\\prueba\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\avsla\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -30,6 +32,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -41,6 +44,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
@@ -49,6 +53,10 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[8.0.1, )"
+            },
+            "Mailkit": {
+              "target": "Package",
+              "version": "[3.1.1, )"
             },
             "Microsoft.AspNetCore.Authentication.Facebook": {
               "target": "Package",
@@ -109,7 +117,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

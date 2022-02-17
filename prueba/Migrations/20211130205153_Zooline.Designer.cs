@@ -10,8 +10,8 @@ using prueba.Data;
 namespace ZooLine.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200823160704_fotoFinal")]
-    partial class fotoFinal
+    [Migration("20211130205153_Zooline")]
+    partial class Zooline
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,70 +69,6 @@ namespace ZooLine.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("character varying(256)")
-                        .HasMaxLength(256);
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("character varying(256)")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("character varying(256)")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("character varying(256)")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasName("UserNameIndex");
-
-                    b.ToTable("AspNetUsers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -379,21 +315,6 @@ namespace ZooLine.Migrations
                     b.ToTable("HabitatClima");
                 });
 
-            modelBuilder.Entity("prueba.Models.Rol", b =>
-                {
-                    b.Property<int>("RolId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("MyProperty")
-                        .HasColumnType("integer");
-
-                    b.HasKey("RolId");
-
-                    b.ToTable("Rol");
-                });
-
             modelBuilder.Entity("prueba.Models.Tour", b =>
                 {
                     b.Property<int>("TourId")
@@ -410,7 +331,12 @@ namespace ZooLine.Migrations
                     b.Property<int>("MaxUsuarios")
                         .HasColumnType("integer");
 
+                    b.Property<string>("UsuarioId")
+                        .HasColumnType("text");
+
                     b.HasKey("TourId");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Tour");
                 });
@@ -437,29 +363,76 @@ namespace ZooLine.Migrations
                     b.ToTable("TourContinente");
                 });
 
+            modelBuilder.Entity("prueba.Models.TourUsuario", b =>
+                {
+                    b.Property<int>("TourId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UsuarioId")
+                        .HasColumnType("text");
+
+                    b.HasKey("TourId", "UsuarioId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("TourUsuario");
+                });
+
             modelBuilder.Entity("prueba.Models.Usuario", b =>
                 {
-                    b.Property<int>("UsuarioId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("integer");
 
                     b.Property<string>("CedulaIdentidad")
                         .HasColumnType("text");
 
-                    b.Property<string>("Contraseña")
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
                         .HasColumnType("text");
 
                     b.Property<string>("Email")
-                        .HasColumnType("text");
+                        .HasColumnType("character varying(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("NombreImagen")
                         .HasColumnType("text");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("character varying(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("character varying(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("PrimerApellido")
                         .HasColumnType("text");
 
                     b.Property<string>("PrimerNombre")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
                     b.Property<string>("SegundoApellido")
@@ -474,31 +447,23 @@ namespace ZooLine.Migrations
                     b.Property<string>("Titulo")
                         .HasColumnType("text");
 
-                    b.HasKey("UsuarioId");
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("boolean");
 
-                    b.ToTable("Usuario");
-                });
+                    b.Property<string>("UserName")
+                        .HasColumnType("character varying(256)")
+                        .HasMaxLength(256);
 
-            modelBuilder.Entity("prueba.Models.UsuarioRol", b =>
-                {
-                    b.Property<int>("UsuarioRolId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                    b.HasKey("Id");
 
-                    b.Property<int>("RolId")
-                        .HasColumnType("integer");
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
 
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("integer");
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex");
 
-                    b.HasKey("UsuarioRolId");
-
-                    b.HasIndex("RolId");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("UsuarioRol");
+                    b.ToTable("AspNetUsers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -512,7 +477,7 @@ namespace ZooLine.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("prueba.Models.Usuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -521,7 +486,7 @@ namespace ZooLine.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("prueba.Models.Usuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -536,7 +501,7 @@ namespace ZooLine.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("prueba.Models.Usuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -545,7 +510,7 @@ namespace ZooLine.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("prueba.Models.Usuario", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -600,6 +565,13 @@ namespace ZooLine.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("prueba.Models.Tour", b =>
+                {
+                    b.HasOne("prueba.Models.Usuario", "Usuario")
+                        .WithMany("Tours")
+                        .HasForeignKey("UsuarioId");
+                });
+
             modelBuilder.Entity("prueba.Models.TourContinente", b =>
                 {
                     b.HasOne("prueba.Models.Continente", "Continente")
@@ -615,16 +587,16 @@ namespace ZooLine.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("prueba.Models.UsuarioRol", b =>
+            modelBuilder.Entity("prueba.Models.TourUsuario", b =>
                 {
-                    b.HasOne("prueba.Models.Rol", "Rol")
-                        .WithMany("UsuarioRoles")
-                        .HasForeignKey("RolId")
+                    b.HasOne("prueba.Models.Tour", "Tour")
+                        .WithMany("TourUsuarios")
+                        .HasForeignKey("TourId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("prueba.Models.Usuario", "Usuario")
-                        .WithMany("UsuarioRoles")
+                        .WithMany("TourUsuarios")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

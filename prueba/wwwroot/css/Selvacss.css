@@ -1,20 +1,22 @@
-﻿
-body {
+﻿body {
     height: 100%;
     background-repeat: no-repeat;
     background: url(../img/Animales/fondo.jpg) no-repeat center center fixed;
     background-size: 100% 100%;
-    
 }
-p{
-    color:white;
+
+p {
+    color: white;
 }
-h1{
-    color:white;
+
+h1 {
+    color: white;
 }
-h4{
-    color:white;
+
+h4 {
+    color: white;
 }
-h3{
-    color:white;
+
+h3 {
+    color: white;
 }

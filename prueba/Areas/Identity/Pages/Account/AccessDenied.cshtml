@@ -1,10 +1,17 @@
 ﻿@page
 @model AccessDeniedModel
 @{
-    ViewData["Title"] = "Acceso Denegado Rol Incorrecto!";
+    Layout = null;
 }
-
+<link href="~/css/accessDenied.css" rel="stylesheet" />
 <header>
     <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">Consulta al Turista si se trata de una equivocacion!.</p>
+    <div class="wrapper">
+        <div class="box">
+            <h1>No eres GUÍA</h1>
+            <p>Consulta a Rol GUÍA , Si se trata de un error !</p>
+            <p><a asp-controller="Home" asp-action="Index">Por favor, Regresa al inicio !.</a></p>
+        </div>
+    </div>
+    
 </header>

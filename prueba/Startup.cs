@@ -31,16 +31,15 @@ namespace prueba
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddAuthentication()
-                .AddGoogle(options =>
-                {
-                    options.ClientId = Configuration["AppGoogleClientId"];
-                    options.ClientSecret = Configuration["App:GoogleClientSecret"];
-                })
-                .AddFacebook(options=>
-                  {
-                      options.AppId = Configuration["App:FacebookClientId"];
-                      options.ClientSecret =Configuration["App:FacebookClientSecret"];
-                  });
+                    .AddGoogle(options =>
+                    {
+                        options.ClientId = Configuration["App:GoogleClientId"];
+                        options.ClientSecret = Configuration["App:GoogleClientSecret"];
+                    })
+                    .AddFacebook(options => {
+                        options.ClientId = Configuration["App:FacebookClientId"];
+                        options.ClientSecret = Configuration["App:FacebookClientSecret"];
+                    });
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddScoped<UserManager<Usuario>>();
@@ -72,7 +71,7 @@ namespace prueba
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Mision}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
              
             });
