@@ -559,3 +559,5 @@ D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Mision\Ind
 D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\MailKit.dll
 D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\MimeKit.dll
 D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\Razor\Views\EjemploEnviarEmail\SendEmail.cshtml.g.cs
+D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Mensajes\Index.cshtml.g.cs

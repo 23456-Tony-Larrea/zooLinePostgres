@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Correos";
+    @using ZooLine.Models
+    @using ZooLine.Services
+    @inject IEmailSenderService EmailSenderService
+   }
+@*<head>   
+</head>
+<body>
+    <h1>Redactar Correos</h1>
+    <EditForm Model="@mail" OnValidSubmit="SendEmail">
+
+        <table class="table">
+            <tr>
+                <td>Email</td>
+                <td><input type="text" asp-action="mail.Email"></td>
+            </tr>
+            <tr>
+                <td>Tema</td>
+                <td><input type="text" asp-action="mail.Tema"></td>
+            </tr>
+            <tr>
+                <td>Cuerpo</td>
+                <td><input type="text" asp-action="mail.Cuerpo"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" class="btn btn-success" value="Enviar" />
+                </td>
+            </tr>
+        </table>
+    </EditForm>
+</body>
+
+@code{ 
+MailRequest mail = new MailRequest();
+
+  private void sendEmail()
+            {
+        EmailSenderService.SendEmailAsync(mail);
+            }
+}*@

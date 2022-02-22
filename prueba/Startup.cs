@@ -9,6 +9,10 @@ using Microsoft.Extensions.Hosting;
 using prueba.Models;
 using ZooLine;
 using AutoMapper;
+using ZooLine.Models;
+using ZooLine.Services;
+using ZooLine.Utilities;
+
 namespace prueba
 {
     public class Startup
@@ -40,12 +44,16 @@ namespace prueba
                         options.ClientId = Configuration["App:FacebookClientId"];
                         options.ClientSecret = Configuration["App:FacebookClientSecret"];
                     });
+
+            services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
+            services.AddSingleton < IEmailSenderService, EmailSenderService>();
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddScoped<UserManager<Usuario>>();
             services.AddScoped(typeof(SignInManager<>));
             services.AddScoped(typeof(UserManager<>));
             services.AddAutoMapper(typeof(AutoMapperSetup));
+            services.AddTransient<IMailHandler, MailHandler> ();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
