@@ -4,11 +4,12 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <h1>Crear</h1>
 
 <h4>Habitat</h4>
-<hr />
+<hr/>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -24,13 +25,13 @@
                 <span asp-validation-for="NombreHabitat" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Crear" class="btn btn-primary" />
+                <button type="submit" class="btn btn-success">Crear<i><span class="material-icons">add_location</span></i></button>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Regresar a la lista </a>
+    <a class="btn btn-danger"asp-action="Index">Regresar a la lista <i><span class="material-icons">exit_to_app</span></i></a>
 </div>
 

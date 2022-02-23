@@ -40,11 +40,11 @@ namespace prueba
                         options.ClientId = Configuration["App:GoogleClientId"];
                         options.ClientSecret = Configuration["App:GoogleClientSecret"];
                     })
-                    .AddFacebook(options => {
-                        options.ClientId = Configuration["App:FacebookClientId"];
+                    .AddFacebook(options =>
+                    {
+                        options.AppId=Configuration["App:FacebookClientId"];
                         options.ClientSecret = Configuration["App:FacebookClientSecret"];
                     });
-
             services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
             services.AddSingleton < IEmailSenderService, EmailSenderService>();
             services.AddControllersWithViews();

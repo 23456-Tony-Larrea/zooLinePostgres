@@ -1,6 +1,8 @@
 ﻿@model Identity.Controllers.RoleEdit
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <h1 class="bg-info text-white">Actualizar Rol</h1>
-<a asp-action="Index" class="btn btn-secondary">Regresar</a>
+<a asp-action="Index" class="btn btn-danger">Regresar<i><span class="material-icons">exit_to_app</span></i></a>
 <div asp-validation-summary="All" class="text-danger"></div>
 
 <form method="post">
@@ -26,6 +28,6 @@
             }
         }
     </table>
-    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="submit" class="btn btn-success">Guardar<i><span class="material-icons">save</span></i></button>
 </form>
 

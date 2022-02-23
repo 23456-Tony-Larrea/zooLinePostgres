@@ -4,37 +4,40 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-<h1>Index</h1>
+<h1>Habitats </h1>
 
 <p>
-    <a asp-action="Create">Crear nuevo</a>
+    <a class="btn btn-success" asp-action="Create">Crear nuevo<i><span class="material-icons">add_location</span></i></a>
 </p>
-<table class="table">
+<table class="table table-striped table-hover table-bordered">
     <thead>
         <tr>
-            <th>
+            <th class="table-success">
                 @Html.DisplayNameFor(model => model.CodigoHabitat)
             </th>
-            <th>
+            <th class="table-success">
                 @Html.DisplayNameFor(model => model.NombreHabitat)
             </th>
-            <th></th>
+            <th class="table-success">
+                Acciones
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td class="table-light">
                 @Html.DisplayFor(modelItem => item.CodigoHabitat)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NombreHabitat)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.HabitatId">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.HabitatId">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.HabitatId">Eliminar</a>
+                <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.HabitatId">Editar<i><span class="material-icons small">edit</span></i></a> |
+                <a  class="btn btn-warning" asp-action="Details" asp-route-id="@item.HabitatId">Detalles<i><span class="material-icons">description</span></i></a> |
+                <a  class="btn btn-danger "asp-action="Delete" asp-route-id="@item.HabitatId">Eliminar<i><span class="material-icons">delete_forever</span></i></a>
             </td>
         </tr>
 }

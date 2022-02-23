@@ -1,12 +1,20 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @model IEnumerable<IdentityRole>
+     
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <h1 class="bg-info text-white">Todos los roles</h1>
 
 <form asp-action="Create" method="post">
     <label for="nombre">Rol</label>
     <input type="text" name="name" />
-    <button type="submit" class="btn btn-sm btn-primary">
-        Crear
+    <br />
+    <br/>
+    <button type="submit" class="btn btn-sm btn-success">
+        Crear<i><span class="material-icons">add_box</span></i>
     </button>
+    <br/>
+    <br/>
+    <a class="btn btn-danger" asp-action="Index" asp-controller="Role">Regresar a la lista <i><span class="material-icons">exit_to_app</span></i></a>
+
 </form>

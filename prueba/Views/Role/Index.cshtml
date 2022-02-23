@@ -2,22 +2,27 @@
 @using Microsoft.AspNetCore.Identity
 @model IEnumerable<IdentityRole>
 
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 <h1 class="bg-info text-white">Todos los Roles</h1>
-<a asp-action="Create" class="btn btn-secondary">Crear Rol</a>
+<br />
+<a asp-action="Create" class="btn btn-success">Crear Rol<i><span class="material-icons">add_box</span></i></a>
 
 <table class="table table-sm table-bordered table-bordered">
-    <tr><th>ID</th><th>Nombre</th><th>Usuario</th><th>Actualizar</th><th>Eliminar</th></tr>
+    <br />
+    <br/>
+    <tr class="table-success"><th>ID<i><span class="material-icons">person_pin_circle</span></i></th><th>Nombre<i><span class="material-icons">perm_contact_calendar</span></i></th><th>Usuario<i><span class="material-icons">person</span></i></th><th>Actualizar<i><span class="material-icons">update</span></i></th><th>Eliminar<i><span class="material-icons">delete_forever</span></i></th></tr>
     @foreach (var role in Model)
     {
         <tr>
             <td>@role.Id</td>
             <td>@role.Name</td>
             <td i-role="@role.Id"></td>
-            <td><a class="btn btn-sm btn-primary" asp-action="Update" asp-route-id="@role.Id">Actualizar</a></td>
+            <td><a class="btn btn-sm btn-primary" asp-action="Update" asp-route-id="@role.Id">Actualizar<i><span class="material-icons">update</span></i></a></td>
             <td>
                 <form asp-action="Delete" asp-route-id="@role.Id" method="post">
                     <button type="submit" class="btn btn-sm btn-danger">
-                        Eliminar
+                        Eliminar<i><span class="material-icons">delete_forever</span></i>
                     </button>
                 </form>
             </td>

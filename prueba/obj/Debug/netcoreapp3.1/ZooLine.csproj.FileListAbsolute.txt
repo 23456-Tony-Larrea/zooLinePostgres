@@ -443,7 +443,6 @@ D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\ZooLine.RazorAssemblyI
 D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\ZooLine.RazorAssemblyInfo.cs
 D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\staticwebassets\ZooLine.StaticWebAssets.Manifest.cache
 D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\staticwebassets\ZooLine.StaticWebAssets.xml
-D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\scopedcss\bundle\ZooLine.styles.css
 D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\ZooLine.TagHelpers.input.cache
 D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\ZooLine.TagHelpers.output.cache
 D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\ZooLine.RazorCoreGenerate.cache

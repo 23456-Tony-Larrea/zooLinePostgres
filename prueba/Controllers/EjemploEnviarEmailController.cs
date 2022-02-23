@@ -1,14 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using ZooLine.Models;
 using ZooLine.Utilities;
-
+using Microsoft.AspNetCore.Authorization;
 namespace ZooLine.Controllers
 {
+    [Authorize(Roles = "guia")]
     [Route("EmailHandler")]
     public class EjemploEnviarEmailController : Controller
     {
