@@ -4,6 +4,8 @@
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 
 <h1>Detalles</h1>
 
@@ -20,6 +22,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ClimaId">Editar</a> |
-    <a asp-action="Index">Regresar a la lista</a>
+    <a asp-action="Edit"class="btn btn-info" asp-route-id="@Model.ClimaId">Editar<i><span class="material-icons small">edit</span></i></a> |
+    <a asp-action="Index" class="btn btn-danger">Regresar a la lista <i><span class="material-icons">exit_to_app</span></i></a>
 </div>
