@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Menu"; 
-    
+      <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
+
 }
 
 <head>
@@ -23,5 +24,21 @@
         </ul>
     </div>
 
-    <section><img src="~/img/Animales/Collage.jpg" alt="Alternate Text" /></section>
+    <section>
+        <center>
+  <video
+    id="my-video"
+    class="video-js"
+    controls
+    preload="auto"
+    width="580"
+    height="480"
+    data-setup="{}"
+  >
+    <source src="./video/Biodiversidad del Ecuador.mp4" type="video/mp4" />
+    <source src="MY_VIDEO.webm" type="video/webm" />
+  </video>
+  </center>
+  <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
+</section>
 

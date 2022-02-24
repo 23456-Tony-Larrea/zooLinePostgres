@@ -1,5 +1,6 @@
-﻿body{
-    font-family:'Roboto' , sans-serif;
+﻿body {
+    font-family: 'Roboto', sans-serif;
+    
 }
 
 *{
@@ -96,3 +97,4 @@ section{
     height:100vh;
     transition:all .5s;
 }
+
