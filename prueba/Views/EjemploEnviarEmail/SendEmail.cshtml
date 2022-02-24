@@ -5,6 +5,9 @@
     var error = (Model.Succes.HasValue && Model.Succes.Value) ? $"Email enviado correctamente {Model.Email}" : (Model.Succes.HasValue && !Model.Succes.Value) ? "Email no encontrado" : string.Empty;
     var messageClass = Model.Succes.GetValueOrDefault() ? "text-success" : "text-danger";
 }
+  
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
 @if (!string.IsNullOrWhiteSpace(error))
 {
@@ -12,15 +15,16 @@
 }
 <form  asp-action="SendEmail" method="post">
     <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
+        <label for="exampleInputEmail1">Dirección de Email</label>
         <input type="email" asp-for="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email">
         <span asp-validation-for="Email" class="error"></span>
         <small id="emailHelp" class="form-text text-muted">Email del turista </small>
     </div>
     <div class="form-group">
-        <label for="exampleInputPassword1">Cuerpo</label>
+        <label for="exampleInputPassword1">Cuerpo del Email</label>
         <textarea asp-for="Content" class="form-control"></textarea>
         <span asp-validation-for="Content" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-success">Enviar</button>
+    <button type="submit" class="btn btn-success">Enviar<i class="fas fa-paper-plane"></i></button>|
+    <button asp-controller="Home" asp-action="Index" class="btn btn-danger">Salir<i class="fas fa-door-open"></i></button>
 </form>

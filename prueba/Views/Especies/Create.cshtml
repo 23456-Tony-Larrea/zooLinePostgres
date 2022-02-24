@@ -5,9 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
 <h1>Crear</h1>
 
-<h4>Especie</h4>
+<h4>Especies</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -25,13 +29,13 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Crear" class="btn btn-primary" />
+                <button type="submit" value="Crear" class="btn btn-success" >Crear<i class="fas fa-paw"></i></button>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Regresar a la lista </a>
+    <a class="btn btn-danger" asp-action="Index">Regresar a la lista<i><span class="material-icons">exit_to_app</span></i> </a>
 </div>
 

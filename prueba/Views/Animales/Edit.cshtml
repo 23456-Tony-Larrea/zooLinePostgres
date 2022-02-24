@@ -4,6 +4,7 @@
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <h1>Editar</h1>
 
@@ -65,13 +66,13 @@
                 <span asp-validation-for="EspecieId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <button type="submit"  class="btn btn-success">Guardar<i><span class="material-icons">save</span></i></button>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Regresar a la lista</a>
+    <a class="btn btn-danger" asp-action="Index">Regresar a la lista<i><span class="material-icons">exit_to_app</span></i></a>
 </div>
 

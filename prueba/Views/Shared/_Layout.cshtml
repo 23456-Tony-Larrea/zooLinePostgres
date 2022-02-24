@@ -6,12 +6,14 @@
     <title>@ViewData["Title"] - ZooLine</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ZooLine</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ZooLine<i class="fas fa-frog"></i></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,24 +22,25 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
 
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="Index">Rol</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Habitats" asp-action="Index">Habitats</a>
+                       <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Climas" asp-action="Index">Climas<i class="fas fa-cloud-sun"></i></a>
                         </li>
                           <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Climas" asp-action="Index">Climas</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Habitats" asp-action="Index">Habitats<i class="fas fa-globe-americas	"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Animales" asp-action="Index">Animal</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Especies" asp-action="Index">Especies<i class="fas fa-kiwi-bird"></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Especies" asp-action="Index">Especie</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Animales" asp-action="Index">Animales<i class="fas fa-fish"></i></a>
                         </li>
+                       
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="EjemploEnviarEmail" asp-action="SendEmail">Correos</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="Index">Roles<i class="fas fa-user-secret"></i></a>
+                        </li>
+                      
+                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="EjemploEnviarEmail" asp-action="SendEmail">Correos<i class="fas fa-envelope-open"></i></a>
                         </li>
                     </ul>
                 </div>

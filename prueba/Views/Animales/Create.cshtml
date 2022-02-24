@@ -4,7 +4,11 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+          <meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+  
 <h1>Crear</h1>
 
 <h4>Animales</h4>
@@ -23,7 +27,11 @@
                 <input asp-for="NombreCientifico" class="form-control" />
                 <span asp-validation-for="NombreCientifico" class="text-danger"></span>
             </div>
-
+            <div class="form-group">
+                <label asp-for="año_nacimiento" class="control-label"></label>
+                <input asp-for="año_nacimiento" class="form-control" />
+                <span asp-validation-for="año_nacimiento" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="año_muerte" class="control-label"></label>
                 <input asp-for="año_muerte" class="form-control" />
@@ -59,13 +67,13 @@
                 <select asp-for="EspecieId" class ="form-control" asp-items="@Model.Especies"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Crear" class="btn btn-primary" />
+                <button type="submit" value="Crear" class="btn btn-success">Crear<i class='fas fa-crow'></i></button>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Regresar a la lista</a>
+    <a class="btn btn-danger" asp-action="Index">Regresar a la lista <i><span class="material-icons">exit_to_app</span></i></a>
 </div>
 

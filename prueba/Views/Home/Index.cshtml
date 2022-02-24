@@ -4,14 +4,17 @@
 
 }
 
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
 <link href="~/css/Selvacss.css" rel="stylesheet" />
 
 <body>
     <div class="text-center">
         <h1 class="display-4">Bienvenido a ZooLine</h1>
         <p>Por tu Bienestar #Quedate en casa.</p>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Ingreso a ZooLine
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal">
+            Ingreso a ZooLine<i class="fas fa-map-marked-alt"></i>
         </button>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -36,9 +39,9 @@
                         Galapagos
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar<i class="fas fa-route"></i></button>
                         
-                            <a  type="button" class="btn btn-success" asp-controller="Carrusel" asp-action="Index">Iniciar Recorrido !</a>
+                            <a  type="button" class="btn btn-success" asp-controller="Carrusel" asp-action="Index">Iniciar Recorrido !<i class="fas fa-hiking"></i></a>
                          </div>
                 </div>
             </div>
