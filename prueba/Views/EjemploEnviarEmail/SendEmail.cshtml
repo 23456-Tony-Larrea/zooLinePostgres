@@ -22,8 +22,10 @@
     </div>
     <div class="form-group">
         <label for="exampleInputPassword1">Cuerpo del Email</label>
-        <textarea asp-for="Content" class="form-control"></textarea>
-        <span asp-validation-for="Content" class="text-danger"></span>
+        <textarea asp-for="Content" class="form-control">
+
+       </textarea>
+
     </div>
     <button type="submit" class="btn btn-success">Enviar<i class="fas fa-paper-plane"></i></button>|
     <button asp-controller="Home" asp-action="Index" class="btn btn-danger">Salir<i class="fas fa-door-open"></i></button>

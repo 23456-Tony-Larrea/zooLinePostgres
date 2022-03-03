@@ -1,30 +1,38 @@
-﻿body {
-    font-family: 'Roboto', sans-serif;
-    
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
+
+body {
+
+    width: 100%;
+    min-height: 100vh;
+    background-color: #42b883;
 }
 
-*{
-    margin:0;
-    padding:0;
-    list-style:none;
-    text-decoration:none;
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
 }
-.slider{
-    position:fixed;
-    left:-250px;
-    width:250px;
-    height:100%;
-    background:#042331;
-    transition:all .5s ease;
+.slider {
+    position: fixed;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: #006A4E;
+    transition: all .5s ease;
 }
-.slider header{
-    font-size:22px;
-    color:white;
-    text-align:center;
-    line-height:70px;
-    background:#063146;
-    user-select:none;    
-}
+    .slider header {
+        font-size: 22px;
+        color: white;
+        text-align: center;
+        line-height: 70px;
+        background: #006A4E;
+        user-select: none;
+    }
 .slider ul a{
     display:block;
     height:100%;
@@ -97,4 +105,21 @@ section{
     height:100vh;
     transition:all .5s;
 }
+.banner{
+    width:25%;
+    height:25%;
+    /*overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;*/
+}
+.banner video{
+    top:0;
+    left:0;
+    object-fit:cover;
+
+    pointer-events:none;
+
+}
+
 
