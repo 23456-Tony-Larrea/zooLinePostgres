@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -180,6 +181,18 @@ namespace ZooLine.Controllers
         private bool EspecieExists(int id)
         {
             return _context.Especie.Any(e => e.EspecieId == id);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Index(string especiesearch)
+        {
+            ViewData["GetEspeciedetails"] = especiesearch;
+
+            var especiquery = from x in _context.Especie select x;
+            if (!String.IsNullOrEmpty(especiesearch))
+            {
+                especiquery = especiquery.Where(x => x.NombreEspecie.Contains(especiesearch));
+            }
+            return View(await especiquery.AsNoTracking().ToListAsync());
         }
     }
 }

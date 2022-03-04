@@ -1,4 +1,5 @@
 ﻿@model ZooLine.Models.AnimalIndexModel
+
 @{
     ViewData["Title"] = Model.TituloDePagina;
     Layout = Model.Layout;
@@ -12,6 +13,14 @@
 <p>
     <a asp-action="Create" class="btn btn-success">Crear<i class='fas fa-crow'></i></a>
 </p>
+<!--<div class="input-group">
+<form method="get" asp-action="Index" class="d-flex">
+    <input type="search" class="form-control"placeholder="buscar el nombre de los animales" style="width:240px"/>
+    <button type="submit" class="btn btn-primary">Buscar<i class="fas fa-search"></i></button>|
+    <a asp-action="Index" class="btn btn-secondary">Todos los animales<i class="fas fa-list"></i></a>
+</form>
+</div>
+<br/>-->
 @if (Model.Data.Count > 0)
 {
 <table class="table table-striped table-hover table-bordered">

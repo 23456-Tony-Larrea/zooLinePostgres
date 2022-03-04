@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -147,6 +148,18 @@ namespace ZooLine.Controllers
         private bool ClimaExists(int id)
         {
             return _context.Clima.Any(e => e.ClimaId == id);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Index(string climasearch)
+        {
+            ViewData["GetClimadetails"]= climasearch;
+             
+            var climquery= from x in _context.Clima select x;
+            if (!String.IsNullOrEmpty(climasearch))
+            {
+               climquery= climquery.Where(x=>x.NombreClima.Contains(climasearch));
+            }
+            return View(await climquery.AsNoTracking().ToListAsync());
         }
     }
 }

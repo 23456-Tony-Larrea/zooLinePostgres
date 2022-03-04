@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -147,6 +148,17 @@ namespace ZooLine.Controllers
         private bool HabitatExists(int id)
         {
             return _context.Habitat.Any(e => e.HabitatId == id);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Index(string habitatsearch) 
+        {
+            ViewData["GetHabitatdetails"] = habitatsearch;
+            var habitatquery=from x in _context.Habitat select x;
+            if (!String.IsNullOrEmpty(habitatsearch))
+            {
+                habitatquery=habitatquery.Where(x=>x.NombreHabitat.Contains(habitatsearch));
+            }
+            return View(await habitatquery.AsNoTracking().ToListAsync());
         }
     }
 }

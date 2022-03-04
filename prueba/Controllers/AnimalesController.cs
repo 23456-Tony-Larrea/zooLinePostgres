@@ -72,23 +72,6 @@ namespace ZooLine.Controllers
             if (ModelState.IsValid)
             {
                 var especie = _context.Especie.FirstOrDefault(x => x.EspecieId.Equals(model.EspecieId));
-                //automapper 
-                //new Animales
-                //{
-                //    AnimalId = model.AnimalId,
-                //    EspecieId = especie.EspecieId,
-                //    Especie = especie,
-                //    Nombre = model.Nombre,
-                //    NombreCientifico = model.NombreCientifico,
-                //    NombreImagen = model.NombreImagen,
-                //    ancho = model.ancho,
-                //    año_muerte = model.año_muerte,
-                //    año_nacimiento = model.año_nacimiento,
-                //    descripcion = model.descripcion,
-                //    estatura = model.estatura,
-
-                //    Titulo = model.Titulo
-                //}
                 var data = Map<Animales>(model);
                 data.Especie = especie;
                 _context.Add(data);
@@ -222,5 +205,18 @@ namespace ZooLine.Controllers
         {
             return _context.Animales.Any(e => e.AnimalId == id);
         }
+
+       /* [HttpGet]
+        public async Task<IActionResult> Index(string animalessearch)
+        {
+            ViewData["GetAnimaldetails"] = animalessearch;
+
+            var animalquery = from x in _context.Animales select x;
+            if (!String.IsNullOrEmpty(animalessearch))
+            {
+                animalquery = animalquery.Where(x => x.Nombre.Contains(animalessearch));
+            }
+            return View(await animalquery.AsNoTracking().ToListAsync());
+        }*/
     }
 }
