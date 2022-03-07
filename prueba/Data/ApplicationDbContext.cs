@@ -14,6 +14,11 @@ namespace prueba.Data
             : base(options)
         {
         }
+
+        public ApplicationDbContext()
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             // fluent api Entity frammework 

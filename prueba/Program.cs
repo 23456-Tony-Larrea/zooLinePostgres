@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MimeKit;
 
+
 namespace prueba
 {
     public class Program
@@ -26,6 +27,7 @@ namespace prueba
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                 
                 });
         
     }

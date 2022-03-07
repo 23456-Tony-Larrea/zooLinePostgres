@@ -24,7 +24,6 @@ namespace ZooLine.Controllers
         {
             return View(await _context.Clima.ToListAsync());
         }
-
         // GET: Climas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -150,7 +149,7 @@ namespace ZooLine.Controllers
             return _context.Clima.Any(e => e.ClimaId == id);
         }
         [HttpGet]
-        public async Task<IActionResult> Index(string climasearch)
+        public async Task<IActionResult> Index(string climasearch, int? i)
         {
             ViewData["GetClimadetails"]= climasearch;
              

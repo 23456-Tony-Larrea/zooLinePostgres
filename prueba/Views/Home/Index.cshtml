@@ -39,4 +39,30 @@
             </div>
         </div>
     </div>
-</body>
+    <div class="posicion" style="position:absolute;bottom:0px;right:0px;">
+    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModa1l">
+            Reportar problema<i class="fas fa-exclamation-triangle	"></i>
+        </button>
+      <div class="modal fade" id="exampleModa1l" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Contacto con Guía</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                 
+                    </div>
+                    <div class="modal-body">
+                    ¿Seguro que quieres reportar un problema?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">No<i class="fas fa-comment-slash	"></i></button>
+                        
+                            <a  type="button" class="btn btn-success" asp-controller="Mensajes" asp-action="Index">Si !<i class="far fa-comment-dots"></i></a>
+                         </div>
+                </div>
+            </div>
+        </div>
+        </div>
+  </body>

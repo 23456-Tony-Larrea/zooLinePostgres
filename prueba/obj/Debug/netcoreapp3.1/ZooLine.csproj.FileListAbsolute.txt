@@ -560,3 +560,10 @@ D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\MimeKit.dll
 D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\Razor\Views\EjemploEnviarEmail\SendEmail.cshtml.g.cs
 D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Mensajes\Index.cshtml.g.cs
+D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\ReflectionIT.Mvc.Paging.Views.dll
+D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\ReflectionIT.Mvc.Paging.dll
+D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\libman.json
+D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Message\Index.cshtml.g.cs

@@ -5,14 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using prueba.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using prueba.Models;
 using ZooLine;
 using AutoMapper;
 using ZooLine.Models;
 using ZooLine.Services;
 using ZooLine.Utilities;
-
+using ZooLine.Hubs;
 namespace prueba
 {
     public class Startup
@@ -45,6 +44,7 @@ namespace prueba
                         options.AppId=Configuration["App:FacebookClientId"];
                         options.ClientSecret = Configuration["App:FacebookClientSecret"];
                     });
+            services.AddSignalR();
             services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
             services.AddSingleton < IEmailSenderService, EmailSenderService>();
             services.AddControllersWithViews();
@@ -53,21 +53,13 @@ namespace prueba
             services.AddScoped(typeof(SignInManager<>));
             services.AddScoped(typeof(UserManager<>));
             services.AddAutoMapper(typeof(AutoMapperSetup));
-            services.AddTransient<IMailHandler, MailHandler> ();
+            services.AddTransient<IMailHandler, MailHandler> ();  
+            services.AddSignalR();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
-            }
+        
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -75,15 +67,16 @@ namespace prueba
 
             app.UseAuthentication();
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Mision}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
-             
+                endpoints.MapHub<ChatHub>("/chatHub");
             });
-            
+
         }
     }
 }

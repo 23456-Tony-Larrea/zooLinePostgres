@@ -14,7 +14,7 @@
 
 <div class="input-group">
 <form method="get" asp-action="Index" class="d-flex">
-    <input type="search" class="form-control"placeholder="buscar el nombre del clima" value="@ViewData["GetClimadetails"]" name="climasearch" style="width:240px"/>
+    <input type="search" class="form-control"placeholder="buscar el nombre del clima" name="climasearch" style="width:240px"/>
     <button type="submit" class="btn btn-primary">Buscar<i class="fas fa-search"></i></button>|
     <a asp-action="Index" class="btn btn-secondary">Todos los climas<i class="fas fa-list"></i></a>
 </form>
@@ -44,3 +44,4 @@
 }
     </tbody>
 </table>
+

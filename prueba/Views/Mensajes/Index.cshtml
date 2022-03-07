@@ -1,42 +1,61 @@
-﻿@{
-    ViewData["Title"] = "Correos";
-    @using ZooLine.Models
-    @using ZooLine.Services
-    @inject IEmailSenderService EmailSenderService
-   }
-@*<head>   
-</head>
-<body>
-    <h1>Redactar Correos</h1>
-    <EditForm Model="@mail" OnValidSubmit="SendEmail">
+﻿<div class="container">
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="font-weight-bold">Usuario</div>
+            <div class="form-control"><input type="text" id="userInput" /></div>
+        </div>
+        <div class="row">
+            <div class="col-2">Message</div>
+            <div class="col-4"><input type="text" id="messageInput" /></div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-6">
+                <input type="button" id="sendButton" value="Enviar Mensaje" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <ul id="messagesList"></ul>
+        </div>
+    </div>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script>
+"use strict";
 
-        <table class="table">
-            <tr>
-                <td>Email</td>
-                <td><input type="text" asp-action="mail.Email"></td>
-            </tr>
-            <tr>
-                <td>Tema</td>
-                <td><input type="text" asp-action="mail.Tema"></td>
-            </tr>
-            <tr>
-                <td>Cuerpo</td>
-                <td><input type="text" asp-action="mail.Cuerpo"></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" class="btn btn-success" value="Enviar" />
-                </td>
-            </tr>
-        </table>
-    </EditForm>
-</body>
+var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 
-@code{ 
-MailRequest mail = new MailRequest();
+//Disable the send button until connection is established.
+document.getElementById("sendButton").disabled = true;
 
-  private void sendEmail()
-            {
-        EmailSenderService.SendEmailAsync(mail);
-            }
-}*@
+connection.on("ReceiveMessage", function (user, message) {
+    var li = document.createElement("li");
+    document.getElementById("messagesList").appendChild(li);
+    // We can assign user-supplied strings to an element's textContent because it
+    // is not interpreted as markup. If you're assigning in any other way, you 
+    // should be aware of possible script injection concerns.
+    li.textContent = `${user} dice ${message}`;
+});
+
+connection.start().then(function () {
+    document.getElementById("sendButton").disabled = false;
+}).catch(function (err) {
+    return console.error(err.toString());
+});
+
+document.getElementById("sendButton").addEventListener("click", function (event) {
+    var user = document.getElementById("userInput").value;
+    var message = document.getElementById("messageInput").value;
+    connection.invoke("EnviarMensaje", user, message).catch(function (err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+});
+</script>
+   
