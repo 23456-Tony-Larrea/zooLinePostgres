@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using prueba.Data;
 using prueba.Models;
+using ZooLine.Models;
 
 namespace ZooLine.Controllers
+
 {
     [Authorize(Roles = "guia")]
     public class HabitatsController : Controller
@@ -19,10 +21,43 @@ namespace ZooLine.Controllers
             _context = context;
         }
 
-        // GET: Habitats
-        public async Task<IActionResult> Index()
+        //// GET: Habitats
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.Habitat.ToListAsync());
+        //}
+        public async Task<IActionResult> Index(
+  string sortOrder,
+  string currentFilter,
+  string searchString,
+  int? pageNumber)
+
         {
-            return View(await _context.Habitat.ToListAsync());
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_habitat" : "";
+            var habitat = from s in _context.Habitat
+                         select s;
+            ViewData["CurrentFilter"] = searchString;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                habitat = habitat.Where(s => s.NombreHabitat.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_clima":
+                    habitat = habitat.OrderByDescending(s => s.NombreHabitat);
+                    break;
+            }
+            int pageSize = 5;
+            return View(await PaginatedList<Habitat>.CreateAsync(habitat.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Habitats/Details/5
@@ -149,16 +184,6 @@ namespace ZooLine.Controllers
         {
             return _context.Habitat.Any(e => e.HabitatId == id);
         }
-        [HttpGet]
-        public async Task<IActionResult> Index(string habitatsearch) 
-        {
-            ViewData["GetHabitatdetails"] = habitatsearch;
-            var habitatquery=from x in _context.Habitat select x;
-            if (!String.IsNullOrEmpty(habitatsearch))
-            {
-                habitatquery=habitatquery.Where(x=>x.NombreHabitat.Contains(habitatsearch));
-            }
-            return View(await habitatquery.AsNoTracking().ToListAsync());
-        }
+
     }
 }

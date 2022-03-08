@@ -23,13 +23,45 @@ namespace ZooLine.Controllers
         }
 
         // GET: Especies
-    
-        public async Task<IActionResult> Index()
-        {
-            var applicationDbContext = _context.Especie.Include(e => e.Habitat);
-            return View(await applicationDbContext.ToListAsync());
-        }
 
+        //public async Task<IActionResult> Index()
+        //{
+        //    var applicationDbContext = _context.Especie.Include(e => e.Habitat);
+        //    return View(await applicationDbContext.ToListAsync());
+        //}
+        public async Task<IActionResult> Index(
+  string sortOrder,
+  string currentFilter,
+  string searchString,
+  int? pageNumber)
+
+        {
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_especie" : "";
+            var especies = from s in _context.Especie
+                         select s;
+            ViewData["CurrentFilter"] = searchString;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                especies = especies.Where(s => s.NombreEspecie.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_clima":
+                    especies = especies.OrderByDescending(s => s.NombreEspecie);
+                    break;
+            }
+            int pageSize = 5;
+            return View(await PaginatedList<Especie>.CreateAsync(especies.AsNoTracking(), pageNumber ?? 1, pageSize));
+        }
         // GET: Especies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -182,17 +214,6 @@ namespace ZooLine.Controllers
         {
             return _context.Especie.Any(e => e.EspecieId == id);
         }
-        [HttpGet]
-        public async Task<IActionResult> Index(string especiesearch)
-        {
-            ViewData["GetEspeciedetails"] = especiesearch;
-
-            var especiquery = from x in _context.Especie select x;
-            if (!String.IsNullOrEmpty(especiesearch))
-            {
-                especiquery = especiquery.Where(x => x.NombreEspecie.Contains(especiesearch));
-            }
-            return View(await especiquery.AsNoTracking().ToListAsync());
-        }
+        
     }
 }

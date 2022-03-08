@@ -1,9 +1,8 @@
-﻿@model IEnumerable<prueba.Models.Clima>
+﻿@using ZooLine.Models
+@*@model IEnumerable<prueba.Models.Clima>*@
+@model PaginatedList<prueba.Models.Clima>
 
-@*@using PagedList;
-@using PagedList.Mvc;
-@model PagedList.IPagedList<Clima>
-*@@{
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -16,10 +15,15 @@
 </p>
 
 <div class="input-group">
-<form method="get" asp-action="Index" class="d-flex">
-    <input type="search" class="form-control"placeholder="buscar el nombre del clima" name="climasearch" style="width:240px"/>
-    <button type="submit" class="btn btn-primary">Buscar<i class="fas fa-search"></i></button>|
-    <a asp-action="Index" class="btn btn-secondary">Todos los climas<i class="fas fa-list"></i></a>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Encontrar por Nombre: <input type="text" name="SearchString" class="form-control" value="@ViewData["CurrentFilter"]" style="width:240px"/>
+            <br/>
+            <button type="submit"  class="btn btn-primary">Buscar<i class="fas fa-search"></i></button> |
+            <a asp-action="Index" class="btn btn-secondary">Regresar la Lista<i class="fas fa-list"></i></a>
+        </p>
+    </div>
 </form>
 </div>
 <br/>
@@ -27,7 +31,7 @@
     <thead>
         <tr>
             <th class="table-success">
-                NombreClima
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">NombreClima</a>
             </th>
             <th class="table-success">Acciones</th>
         </tr>
@@ -47,9 +51,22 @@
 }
     </tbody>
 </table>
-@*<div></div>
-Page @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount)
-<div>
-@Html.PagedListPager(Model ,page=>Url.Action("Index",new {page=page}))
-</div>
-*@
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

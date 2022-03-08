@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PagedList;
 using prueba.Data;
 using prueba.Models;
 using ZooLine.Models;
@@ -22,17 +21,43 @@ namespace ZooLine.Controllers
             _context = context;
         }
         // GET: Climas
-         public async Task<IActionResult> Index()
-         {
-             return View(await _context.Clima.ToListAsync());
-         }
-        //public ActionResult Index(int? page)
+        //public async Task<IActionResult> Index()
         //{
-        //    var pageNumber = page ?? 1;
-        //    var pageSize = 10;
-        //    var climas=_context.Clima.OrderBy(x=>x.NombreClima).ToPagedList(pageNumber,pageSize);
-        //   return View(climas);
+        //    return View(await _context.Clima.ToListAsync());
         //}
+        public async Task<IActionResult> Index(
+     string sortOrder,
+     string currentFilter,
+     string searchString,
+     int? pageNumber)
+
+        {
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_clima" : "";
+            var climas = from s in _context.Clima
+                           select s;
+            ViewData["CurrentFilter"] = searchString;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                climas = climas.Where(s => s.NombreClima.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_clima":
+                    climas = climas.OrderByDescending(s => s.NombreClima);
+                    break;
+             }
+            int pageSize = 5;
+            return View(await PaginatedList<Clima>.CreateAsync(climas.AsNoTracking(), pageNumber ?? 1, pageSize));
+        }
         //// GET: Climas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -157,17 +182,17 @@ namespace ZooLine.Controllers
         {
             return _context.Clima.Any(e => e.ClimaId == id);
         }
-        [HttpGet]
-        public async Task<IActionResult> Index(string climasearch, int? i)
-        {
-            ViewData["GetClimadetails"]= climasearch;
+        //[HttpGet]
+        //public async Task<IActionResult> Index(string climasearch, int? i)
+        //{
+        //    ViewData["GetClimadetails"]= climasearch;
              
-            var climquery= from x in _context.Clima select x;
-            if (!String.IsNullOrEmpty(climasearch))
-            {
-               climquery= climquery.Where(x=>x.NombreClima.Contains(climasearch));
-            }
-            return View(await climquery.AsNoTracking().ToListAsync());
-        }
+        //    var climquery= from x in _context.Clima select x;
+        //    if (!String.IsNullOrEmpty(climasearch))
+        //    {
+        //       climquery= climquery.Where(x=>x.NombreClima.Contains(climasearch));
+        //    }
+        //    return View(await climquery.AsNoTracking().ToListAsync());
+        //}
     }
 }
