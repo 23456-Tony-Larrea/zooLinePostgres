@@ -1,19 +1,20 @@
 ﻿<link href="~/css/Mensajes.css" rel="stylesheet"/> 
 
-<div class="container">
+<div class="form-group">
         <div class="row">&nbsp;</div>
         <div class="row">
             <div class="font-weight-bold">Usuario</div>
-            <div class="form-control"><input type="text" id="userInput" /></div>
+            <br/>
+            <input type="text" id="userInput" class="form-control"/>
         </div>
         <div class="row">
-            <div class="col-2">Message</div>
-            <div class="col-4"><input type="text" id="messageInput" /></div>
+            <div class="font-weight-bold">Mensaje</div>
+            <textarea class="form-control"id="messageInput"></textarea>
         </div>
         <div class="row">&nbsp;</div>
         <div class="row">
-            <div class="col-6">
-                <input type="button" id="sendButton" value="Enviar Mensaje" />
+            <div class="form-group">
+                <button type="button" id="sendButton" class ="btn btn-success"><i class="fab fa-facebook-messenger"></i>Enviar Mensaje</button>
             </div>
         </div>
     </div>
@@ -27,6 +28,7 @@
             <ul id="messagesList"></ul>
         </div>
     </div>
+
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script>
 "use strict";
