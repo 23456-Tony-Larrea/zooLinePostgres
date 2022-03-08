@@ -566,4 +566,5 @@ D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.d
 D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\ReflectionIT.Mvc.Paging.Views.dll
 D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\ReflectionIT.Mvc.Paging.dll
 D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\libman.json
-D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Message\Index.cshtml.g.cs
+D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\PagedList.dll
+D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\PagedList.Mvc.dll

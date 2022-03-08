@@ -116,13 +116,14 @@ section{
     height: auto;
     transform: translate(-50%,-50%);
 }
-.banner video{
-    top:0;
-    left:0;
-    object-fit:cover;
-
-    pointer-events:none;
-
+h1 {
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 150px;
+    font-size: 150px;
+    font-weight: 800;
+    color: transparent;
+    background-image: url(https://media.giphy.com/media/3o6ZtluYTKJeXXqt8s/giphy.gif    );
+    background-position: center;
+    -webkit-background-clip: text;
 }
-
-

@@ -96,6 +96,14 @@
               "target": "Package",
               "version": "[3.1.4, )"
             },
+            "PagedList.Mvc": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "Pagedlist": {
+              "target": "Package",
+              "version": "[1.17.0, )"
+            },
             "ReflectionIT.Mvc.Paging": {
               "target": "Package",
               "version": "[3.0.0, )"

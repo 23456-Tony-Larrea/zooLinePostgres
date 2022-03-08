@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PagedList;
 using prueba.Data;
 using prueba.Models;
+using ZooLine.Models;
 
 namespace ZooLine.Controllers
 {
@@ -18,13 +21,19 @@ namespace ZooLine.Controllers
         {
             _context = context;
         }
-
         // GET: Climas
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Clima.ToListAsync());
-        }
-        // GET: Climas/Details/5
+         public async Task<IActionResult> Index()
+         {
+             return View(await _context.Clima.ToListAsync());
+         }
+        //public ActionResult Index(int? page)
+        //{
+        //    var pageNumber = page ?? 1;
+        //    var pageSize = 10;
+        //    var climas=_context.Clima.OrderBy(x=>x.NombreClima).ToPagedList(pageNumber,pageSize);
+        //   return View(climas);
+        //}
+        //// GET: Climas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
