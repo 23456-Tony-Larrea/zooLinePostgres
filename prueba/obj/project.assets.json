@@ -29,15 +29,6 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
-      "JetBrains.Annotations/2021.1.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/JetBrains.Annotations.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/JetBrains.Annotations.dll": {}
-        }
-      },
       "MailKit/3.1.1": {
         "type": "package",
         "dependencies": {
@@ -2924,45 +2915,6 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
-      },
-      "X.PagedList/8.1.0": {
-        "type": "package",
-        "dependencies": {
-          "JetBrains.Annotations": "2021.1.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/X.PagedList.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/X.PagedList.dll": {}
-        }
-      },
-      "X.PagedList.Mvc/4.7.0": {
-        "type": "package",
-        "dependencies": {
-          "X.PagedList": "1.20.0.1"
-        },
-        "compile": {
-          "lib/net40/X.PagedList.Mvc.dll": {}
-        },
-        "runtime": {
-          "lib/net40/X.PagedList.Mvc.dll": {}
-        }
-      },
-      "X.PagedList.Mvc.Core/8.1.0": {
-        "type": "package",
-        "dependencies": {
-          "X.PagedList": "8.1.0"
-        },
-        "compile": {
-          "lib/netcoreapp3.1/X.PagedList.Mvc.Core.dll": {}
-        },
-        "runtime": {
-          "lib/netcoreapp3.1/X.PagedList.Mvc.Core.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
       }
     }
   },
@@ -2994,28 +2946,6 @@
         "automapper.extensions.microsoft.dependencyinjection.nuspec",
         "icon.png",
         "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
-      ]
-    },
-    "JetBrains.Annotations/2021.1.0": {
-      "sha512": "n9JSw5Z+F+6gp9vSv4aLH6p/bx3GAYA6FZVq1wJq/TJySv/kPgFKLGFeS7A8Xa5X4/GWorh5gd43yjamUgnBNA==",
-      "type": "package",
-      "path": "jetbrains.annotations/2021.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "icon.png",
-        "jetbrains.annotations.2021.1.0.nupkg.sha512",
-        "jetbrains.annotations.nuspec",
-        "lib/net20/JetBrains.Annotations.dll",
-        "lib/net20/JetBrains.Annotations.xml",
-        "lib/netstandard1.0/JetBrains.Annotations.deps.json",
-        "lib/netstandard1.0/JetBrains.Annotations.dll",
-        "lib/netstandard1.0/JetBrains.Annotations.xml",
-        "lib/netstandard2.0/JetBrains.Annotations.deps.json",
-        "lib/netstandard2.0/JetBrains.Annotations.dll",
-        "lib/netstandard2.0/JetBrains.Annotations.xml",
-        "lib/portable40-net40+sl5+win8+wp8+wpa81/JetBrains.Annotations.dll",
-        "lib/portable40-net40+sl5+win8+wp8+wpa81/JetBrains.Annotations.xml"
       ]
     },
     "MailKit/3.1.1": {
@@ -9440,43 +9370,6 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
-    },
-    "X.PagedList/8.1.0": {
-      "sha512": "xBZNtE+WU6FEKEapLvIdTFn4h3Ue03dsBE1LfnhzsLFIrop5bX6f7UuXnsenG/QK1OPHYknkC0a0vPBAMo0bXQ==",
-      "type": "package",
-      "path": "x.pagedlist/8.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/netstandard2.0/X.PagedList.dll",
-        "x.pagedlist.8.1.0.nupkg.sha512",
-        "x.pagedlist.nuspec"
-      ]
-    },
-    "X.PagedList.Mvc/4.7.0": {
-      "sha512": "w3aZi6PVCHzeGXzem/JvPQNgPAhBl5AABY78O52FjAy63S7siT1jZPo+NIdLrg58evJBXRvY95Suoel6VyKm0w==",
-      "type": "package",
-      "path": "x.pagedlist.mvc/4.7.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Content/Content/PagedList.css",
-        "lib/net40/X.PagedList.Mvc.dll",
-        "x.pagedlist.mvc.4.7.0.nupkg.sha512",
-        "x.pagedlist.mvc.nuspec"
-      ]
-    },
-    "X.PagedList.Mvc.Core/8.1.0": {
-      "sha512": "Nqz9rSjU/St77F25GV8TogDfkVsbErC0o6o8hJtkkXrAilXHjsEALRMn8eVhgAFJ3XFWvvaHHSiDN3SnTGWSEA==",
-      "type": "package",
-      "path": "x.pagedlist.mvc.core/8.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/netcoreapp3.1/X.PagedList.Mvc.Core.dll",
-        "x.pagedlist.mvc.core.8.1.0.nupkg.sha512",
-        "x.pagedlist.mvc.core.nuspec"
-      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -9493,10 +9386,7 @@
       "Microsoft.EntityFrameworkCore.Sqlite >= 3.1.6",
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.5",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.4",
-      "Npgsql.EntityFrameworkCore.PostgreSQL >= 3.1.4",
-      "X.PagedList >= 8.1.0",
-      "X.PagedList.Mvc >= 4.7.0",
-      "X.PagedList.Mvc.Core >= 8.1.0"
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 3.1.4"
     ]
   },
   "packageFolders": {
@@ -9594,18 +9484,6 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
             "version": "[3.1.4, )"
-          },
-          "X.PagedList": {
-            "target": "Package",
-            "version": "[8.1.0, )"
-          },
-          "X.PagedList.Mvc": {
-            "target": "Package",
-            "version": "[4.7.0, )"
-          },
-          "X.PagedList.Mvc.Core": {
-            "target": "Package",
-            "version": "[8.1.0, )"
           }
         },
         "imports": [
@@ -9629,17 +9507,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "El paquete \"X.PagedList.Mvc 4.7.0\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\" en lugar de la plataforma de destino del proyecto \".NETCoreApp,Version=v3.1\". Puede que el paquete no sea totalmente compatible con el proyecto.",
-      "libraryId": "X.PagedList.Mvc",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    }
-  ]
+  }
 }

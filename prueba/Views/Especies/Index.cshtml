@@ -1,5 +1,4 @@
 ﻿@using ZooLine.Models
-@*@model IEnumerable<prueba.Models.Especie>*@
 @model PaginatedList<prueba.Models.Especie>
 
 @{
@@ -35,9 +34,7 @@
             <th class="table-success">
                  <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">NombreEspecie</a>
             </th>
-            <th class="table-success">
-                Habitat
-            </th>
+            
             <th class="table-success">
                 Acciones
             </th>
@@ -49,13 +46,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.NombreEspecie)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Habitat.NombreHabitat)
-            </td>
-            <td>
-                <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.EspecieId">Editar<i><span class="material-icons">edit</span></i></a> |
-                <a class="btn btn-warning" asp-action="Details" asp-route-id="@item.EspecieId">Detalles <i><span class="material-icons">description</span></i></a> |
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.EspecieId">Eliminar<i><span class="material-icons"></span></i></a>
+             <td>
+                <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.EspecieId">Editar<i class="fas fa-edit"></i></a> |
+                <a class="btn btn-warning" asp-action="Details" asp-route-id="@item.EspecieId">Detalles <i class="fas fa-file-alt"></i></a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.EspecieId">Eliminar<i class="fas fa-trash-alt"></i></a>
             </td>
         </tr>
 }
@@ -70,13 +64,13 @@
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-default @prevDisabled">
-    Previous
+   class="btn btn-danger @prevDisabled">
+    Antes<i class="fas fa-arrow-alt-circle-left"></i>
 </a>
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex + 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-default @nextDisabled">
-    Next
+   class="btn btn-success @nextDisabled">
+    Despues <i class="fas fa-arrow-alt-circle-right"></i>
 </a>
