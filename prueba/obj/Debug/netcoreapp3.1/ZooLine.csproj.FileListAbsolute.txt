@@ -561,7 +561,3 @@ D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dl
 D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\Razor\Views\EjemploEnviarEmail\SendEmail.cshtml.g.cs
 D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\Razor\Views\Mensajes\Index.cshtml.g.cs
 D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\libman.json
-D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\JetBrains.Annotations.dll
-D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\X.PagedList.dll
-D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\X.PagedList.Mvc.dll
-D:\ZooLine\zooLinePostgres\prueba\bin\Debug\netcoreapp3.1\X.PagedList.Mvc.Core.dll

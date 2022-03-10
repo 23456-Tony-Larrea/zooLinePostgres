@@ -32,7 +32,7 @@ namespace prueba
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<Usuario>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
             services.AddAuthentication()
                     .AddGoogle(options =>
                     {
