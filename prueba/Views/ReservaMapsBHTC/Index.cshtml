@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "GPS";
+    <script src="https://maps.googleapis.com/maps/api/js?key=@(ViewData["MyKey"])&callback=initMap&libraries=&v=weekly" async defer ></script>
+<link href="~/css/Maps.css" rel="stylesheet"/> 
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+}
+<style>
+    #map {
+        height: 400px;
+        width: 100%;
+         display: flex;
+  justify-content: center;
+  align-items: center;
+    }
+
+</style>
+<div class="row">
+        <h3>
+            Bosque Húmedo Tropical del Choco         
+        </h3>
+        <div id="map"></div>
+       
+        <script>
+            var click=document.getElementById("myclick");
+            function initMap() {
+              
+              const uluru = { lat:-1.81667, lng:-79.51667 };
+              
+              const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 8,
+                center: uluru,
+              });
+              
+              const marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+              });
+            }
+        </script>
+
+    </div>
+    <br/>
+    <div class="row">
+    <a class="btn btn-success" asp-action="Index" asp-controller="ReservaMapsBDC">
+    Bosque Deciduo de la Costa<i class='fas fa-map-pin'></i>
+</a>|
+    <a class="btn btn-danger" asp-action="Index" asp-controller="Menu">
+    Salir<i class="fa fa-close"></i>
+</a>
+
+</div>

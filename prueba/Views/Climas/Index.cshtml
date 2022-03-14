@@ -31,9 +31,9 @@
     <thead>
         <tr>
             <th class="table-success">
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">NombreClima</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]"><p class="text-dark">Nombre del Clima</p></a>
             </th>
-            <th class="table-success">Acciones</th>
+            <th class="table-success"><p>Acciones</p></th>
         </tr>
     </thead>
     <tbody>
@@ -61,12 +61,12 @@
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-danger @prevDisabled">
-    Antes <i class="fas fa-arrow-alt-circle-left"></i>
+    Anterior <i class="fas fa-arrow-alt-circle-left"></i>
 </a>
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex + 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-success @nextDisabled">
-    Despues<i class="fas fa-arrow-alt-circle-right"></i>
+    Siguiente<i class="fas fa-arrow-alt-circle-right"></i>
 </a>

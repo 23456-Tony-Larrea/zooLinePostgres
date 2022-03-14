@@ -31,22 +31,16 @@
     <thead>
         <tr>
             <th class="table-success">
-               CodigoHabitat
+             <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]"><p class="text-dark">Nombre del Habitat</p></a>
             </th>
             <th class="table-success">
-             <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">NombreHabitat</a>
-            </th>
-            <th class="table-success">
-                Acciones
+               <p class="text-dark"> Acciones</p>
             </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td class="table-light">
-                @Html.DisplayFor(modelItem => item.CodigoHabitat)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NombreHabitat)
             </td>
@@ -69,12 +63,12 @@
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-danger @prevDisabled">
-    Antes <i class="fas fa-arrow-alt-circle-left"></i>
+    Anterior <i class="fas fa-arrow-alt-circle-left"></i>
 </a>
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex + 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-success @nextDisabled">
-    Despues <i class="fas fa-arrow-alt-circle-right"></i>
+    Siguiente <i class="fas fa-arrow-alt-circle-right"></i>
 </a>
