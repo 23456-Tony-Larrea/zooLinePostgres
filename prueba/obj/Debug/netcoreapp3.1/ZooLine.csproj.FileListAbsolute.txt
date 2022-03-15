@@ -565,3 +565,7 @@ D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\Razor\Views\MapsReserv
 D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ReservaMapsBHTC\Index.cshtml.g.cs
 D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ReservaMapsBDC\Index.cshtml.g.cs
 D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ReservaMapsBPO\Index.cshtml.g.cs
+D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ReservasMapsPCC\Index.cshtml.g.cs
+D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ReservasMapsPNP\Index.cshtml.g.cs
+D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ReservasMapsMI\Index.cshtml.g.cs
+D:\ZooLine\zooLinePostgres\prueba\obj\Debug\netcoreapp3.1\Razor\Views\ResevasMapsBPO\Index.cshtml.g.cs

@@ -15,15 +15,15 @@
 
 </style>
         <h3>
-            Bosque Piemetano Occidental         
-        </h3>
+  Parque Nacional Podocarpus      
+  </h3>
         <div id="map"></div>
        
         <script>
             var click=document.getElementById("myclick");
             function initMap() {
               
-              const uluru = { lat:-0.950022, lng:-80.7162};
+              const uluru = { lat:-4.0668500, lng: -78.9548800};
               
               const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 8,
@@ -37,9 +37,9 @@
             }
         </script>
         <br/>
-            <a class="btn btn-success" asp-action="Index" asp-controller="ReservasMapsPCC">
-    Parque Cayambe Coca <i class='fas fa-map-pin'></i>
+            <a class="btn btn-success" asp-action="Index" asp-controller="ReservasMapsMI">
+  Matorral Interandino<i class='fas fa-map-pin'></i>
 </a>|
     <a class="btn btn-danger" asp-action="Index" asp-controller="Menu">
     Salir<i class="fa fa-close"></i>
-</a>
+    </a>
